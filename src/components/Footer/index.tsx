@@ -20,8 +20,7 @@ export const Footer: React.FC<FooterI> = ({ ...props }) => {
           <div className="w-[336px]">
             <Logo />
             <Subtitle3Regular className="text-grey-200 mt-[12px] mb-[28px]">
-              SongsToRadio is decentralizing the music and creative industry and
-              community.
+              LiTED is decentralizing the creative industry and community.
             </Subtitle3Regular>
 
             <div className="flex gap-[24px]">
@@ -40,7 +39,7 @@ export const Footer: React.FC<FooterI> = ({ ...props }) => {
                 <li>
                   <Link href={""}>
                     <Subtitle3Regular className="text-grey-200">
-                      About STR
+                      About LiTED
                     </Subtitle3Regular>
                   </Link>
                 </li>
@@ -65,23 +64,23 @@ export const Footer: React.FC<FooterI> = ({ ...props }) => {
               <Subtitle2Bold className="mb-[12px]">Docs</Subtitle2Bold>
               <ul className="flex flex-col gap-[8px]">
                 <li>
-                  <Link href={""}>
+                  <Link target="_blank" href={""}>
                     <Subtitle3Regular className="text-grey-200 flex gap-[8px]">
                       Docs <ExportIcon />
                     </Subtitle3Regular>
                   </Link>
                 </li>
                 <li>
-                  <Link href={""}>
+                  <Link target="_blank" href={""}>
                     <Subtitle3Regular className="text-grey-200 flex gap-[8px]">
                       Github <ExportIcon />
                     </Subtitle3Regular>
                   </Link>
                 </li>
                 <li>
-                  <Link href={""}>
+                  <Link target="_blank" href={"story.xyz"}>
                     <Subtitle3Regular className="text-grey-200 flex gap-[8px]">
-                      Stacks.co <ExportIcon />
+                      story.xyz <ExportIcon />
                     </Subtitle3Regular>
                   </Link>
                 </li>
@@ -90,7 +89,7 @@ export const Footer: React.FC<FooterI> = ({ ...props }) => {
           </div>
         </div>
         <Subtitle3Regular className="text-grey-200 text-center mt-[40px]">
-          © 2022 SongsToRadio. All rights reserved.
+          © 2025 LiTED. All rights reserved.
         </Subtitle3Regular>
       </Container>
     </footer>

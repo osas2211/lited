@@ -34,11 +34,11 @@ export const Message = () => {
             prefixIcon={<Send2Icon />}
             className={inputStyle}
             placeholder="Send a message"
-            suffixIcon={
-              <span className="cursor-pointer" onClick={toggleEmojiPicker}>
-                <HappyEmoji />
-              </span>
-            }
+            // suffixIcon={
+            //   <span className="cursor-pointer" onClick={toggleEmojiPicker}>
+            //     <HappyEmoji />
+            //   </span>
+            // }
           />
           {showPicker && (
             <div className="absolute bottom-[3.5rem] right-[0]">
