@@ -5,26 +5,14 @@ import { MetaData } from "./MetaData"
 import { NFTData } from "./NFTData"
 import { NFTDescription } from "./NFTDescription"
 import { AdditionalDetails } from "./AdditionalDetails"
+import { in_app_nav_items } from "@/constants/nav-urls"
 
 const Launchpad = () => {
   const { H4, Subtitle2Regular } = Typography
-  const items = [
-    {
-      name: "market",
-      route: "/",
-    },
-    {
-      name: "stack",
-      route: "/",
-    },
-    {
-      name: "launchpad",
-      route: "/launchpad",
-    },
-  ]
+
   return (
     <main>
-      <Header navItems={items} active="launchpad" />
+      <Header navItems={in_app_nav_items} active="launchpad" />
       <Container>
         <div className="mb-[60px]">
           <Subtitle2Regular className="text-grey-300 cursor-pointer flex gap-[12px] items-center mb-[16px]">

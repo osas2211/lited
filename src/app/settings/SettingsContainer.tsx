@@ -4,24 +4,16 @@ import { EyeFilledIcon } from "@/components/Icons"
 import { SettingsNav } from "./SettingsNav"
 import "./settings.css"
 import { MobileSettingsNav } from "./MobileSettingsNav"
+import { in_app_nav_items } from "@/constants/nav-urls"
+
+const { H3 } = Typography
 
 export const SettingsContainer: FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const { H3 } = Typography
-  const items = [
-    {
-      name: "market",
-      route: "/",
-    },
-    {
-      name: "stack",
-      route: "/",
-    },
-  ]
   return (
     <main>
-      <Header navItems={items} active="market" />
+      <Header navItems={in_app_nav_items} active="settings" />
       <Container>
         <div>
           <div className="flex justify-between items-center relative">

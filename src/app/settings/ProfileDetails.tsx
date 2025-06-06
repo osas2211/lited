@@ -8,9 +8,9 @@ import {
   WebIcon,
 } from "@/components/Icons"
 
-export const ProfileDetails = () => {
-  const { H4, Subtitle1Regular, Subtitle2Medium } = Typography
+const { H4, Subtitle1Regular, Subtitle2Medium } = Typography
 
+export const ProfileDetails = () => {
   return (
     <div className="mt-[32px] w-full md:w-[400px] md:max-h-[65vh] md:overflow-scroll no-scrollbar">
       <H4 className="text-grey-100">Profile Details</H4>

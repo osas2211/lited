@@ -14,6 +14,8 @@ import { Tab } from "./Tab"
 import { Empty } from "./Empty"
 import { NftGrid } from "./Grid/NftGrid"
 import { NftsTab } from "./Tab/NFTsTab"
+import { SideScroller } from "./SideScroller"
+import { TabAlt } from "./Tab/TabAlt"
 export {
   Typography,
   Button,
@@ -31,4 +33,6 @@ export {
   Empty,
   NftGrid,
   NftsTab,
+  SideScroller,
+  TabAlt,
 }

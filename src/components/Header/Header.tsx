@@ -1,3 +1,4 @@
+"use client"
 import React, { FC } from "react"
 import { Logo, Input, Button, Typography, Nav } from ".."
 import { SearchIcon } from "../Icons"
@@ -14,7 +15,7 @@ const Header: FC<HeaderI> = ({ className, navItems, active, ...props }) => {
     <header
       {...props}
       className={`
-    md:px-[80px] relative px-[16px] py-[16px] bg-grey-900
+    md:px-[80px] sticky top-0 left-0 z-[100] px-[16px] py-[16px] bg-grey-900/50 backdrop-blur-[20px]
      ${className ? className : ""}`}
     >
       <div className="flex justify-between items-center">

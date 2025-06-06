@@ -1,0 +1,52 @@
+.portal_meta-card {
+  border-radius: 20px;
+  border: 1px solid var(--Grey-Grey-700, #262424);
+  background: rgba(10, 10, 10, 0.64);
+  box-shadow: 0px 0.8px 100px 0px rgba(216, 57, 166, 0.1) inset;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+}
+
+.portal_meta-circle1,
+.portal_meta-circle2,
+.portal_meta-circle3 {
+  width: 194px;
+  height: 194px;
+  border-radius: 100%;
+  border: 1px solid var(--Grey-Grey-700, #262424);
+  opacity: 0.08;
+  background: var(
+    --Gradients-Linear,
+    linear-gradient(306deg, #9813b9 0%, #ef1aac 49.48%, #e7224c 100%)
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.portal_meta-circle2 {
+  height: 122px;
+  width: 122px;
+  opacity: 0.07;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.portal_meta-circle3 {
+  border: 1px solid var(--Grey-Grey-700, #262424);
+  opacity: 1;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(
+    --Background-Gradient,
+    linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0.16) 0%,
+      rgba(234, 58, 96, 0.16) 100%
+    )
+  );
+}
