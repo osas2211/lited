@@ -1,0 +1,40 @@
+:root {
+  --bgGradient: linear-gradient(
+    306deg,
+    #9813b9 0%,
+    #ef1aac 49.48%,
+    #e7224c 100%
+  );
+}
+
+.settings-nav-item {
+  padding: 8px 8px 8px 25px;
+}
+
+.settings-nav-active {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.2) 0%,
+    rgba(234, 58, 96, 0.2) 100%
+  );
+}
+
+.settings-nav-active::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  padding: 1px;
+  background: var(--bgGradient);
+}
+
+.settings-nav-active_text {
+  background: var(--bgGradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

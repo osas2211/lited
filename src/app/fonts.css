@@ -1,0 +1,49 @@
+/* ARVO FONTS */
+@font-face {
+  font-family: "Arvo";
+  src: url(/assets/Fonts/Arvo/Arvo-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Arvo";
+  src: url(/assets/Fonts/Arvo/Arvo-Bold.ttf);
+  font-weight: 700;
+}
+
+/* TENON FONTS */
+@font-face {
+  font-family: "Tenon";
+  src: url(/assets/Fonts/Tenon/Fontspring-DEMO-tenon-xlight-2.otf);
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Tenon";
+  src: url(/assets/Fonts/Tenon/Fontspring-DEMO-tenon-light-2.otf);
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Tenon";
+  src: url(/assets/Fonts/Tenon/Fontspring-DEMO-tenon-regular-2.otf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Tenon";
+  src: url(/assets/Fonts/Tenon/Fontspring-DEMO-tenon-medium-2.otf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Tenon";
+  src: url(/assets/Fonts/Tenon/Fontspring-DEMO-tenon-bold-2.otf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Tenon";
+  src: url(/assets/Fonts/Tenon/Fontspring-DEMO-tenon-xbold-2.otf);
+  font-weight: 700;
+}

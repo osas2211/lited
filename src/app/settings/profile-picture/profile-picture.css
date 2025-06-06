@@ -1,0 +1,32 @@
+.profile-image_input {
+  display: none;
+}
+
+.profile-image_avatar {
+  cursor: pointer;
+  position: relative;
+  display: block;
+}
+.profile-image_avatar:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  background: rgba(20, 20, 20, 0.279);
+  z-index: 10;
+}
+.profile-image_avatar:hover::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  background: url(/edit.svg) center center;
+  background-repeat: no-repeat;
+  transform: translate(0%, -50%);
+}

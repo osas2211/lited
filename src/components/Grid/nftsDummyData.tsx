@@ -1,0 +1,38 @@
+export const nfts = [
+  {
+    imageSrc: "/nft.png",
+    name: "Music NFT",
+    amount: 238.766,
+    genre: "Hip hop",
+    artistAvatar: "/nft.png",
+    artistName: "Polycarp",
+    inFavourites: false,
+  },
+  {
+    imageSrc: "/nft2.png",
+    name: "Music NFT",
+    amount: 238.766,
+    genre: "Hip hop",
+    artistAvatar: "/nft2.png",
+    artistName: "Polycarp",
+    inFavourites: true,
+  },
+  {
+    imageSrc: "/nft3.png",
+    name: "Music NFT",
+    amount: 238.766,
+    genre: "Hip hop",
+    artistAvatar: "/nft3.png",
+    artistName: "Polycarp",
+    inFavourites: false,
+  },
+  {
+    imageSrc: "/nft4.png",
+    name: "Music NFT",
+    amount: 238.766,
+    genre: "Hip hop",
+    artistAvatar: "/nft.png",
+    artistName: "Polycarp",
+    inFavourites: false,
+  },
+]
