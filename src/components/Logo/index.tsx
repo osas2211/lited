@@ -6,8 +6,8 @@ export const Logo: FC<{ width?: number; height?: number }> = ({ ...props }) => {
     <Image
       src={"/assets/logo.svg"}
       alt="logo"
-      width={props.width || 80}
-      height={props.height || 32}
+      width={props.width || 140}
+      height={props.height || 50}
     />
   )
 }

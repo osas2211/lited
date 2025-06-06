@@ -15,11 +15,11 @@ const Header: FC<HeaderI> = ({ className, navItems, active, ...props }) => {
     <header
       {...props}
       className={`
-    md:px-[80px] sticky top-0 left-0 z-[100] px-[16px] py-[16px] bg-grey-900/50 backdrop-blur-[20px]
+    md:px-[80px] sticky top-0 left-0 z-[100] px-[16px] py-[6px] bg-grey-900/50 backdrop-blur-[20px]
      ${className ? className : ""}`}
     >
       <div className="flex justify-between items-center">
-        <div className="flex gap-[24px]">
+        <div className="flex gap-[24px] items-center">
           <Logo />
           <div className="hidden md:block">
             <Input

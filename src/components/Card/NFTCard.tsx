@@ -67,7 +67,7 @@ export const NFTCard: FC<NFTCardI> = ({
           <div className="flex items-center gap-[8px]">
             <div className="relative h-[24px] w-[24px]">
               <Image
-                src={"/STX.svg"}
+                src={"/wip.png"}
                 alt="currency"
                 fill={true}
                 objectFit="cover"

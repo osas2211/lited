@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from "react"
 import { Button } from ".."
-import { HiroIcon } from "../Icons"
 import { ProfileNav } from "../Header/ProfileNav"
+import Image from "next/image"
 
 export const ConnectWallet = () => {
   const [isConnected, setIsConnected] = useState(false)
@@ -10,18 +10,21 @@ export const ConnectWallet = () => {
     <div>
       {!isConnected ? (
         <Button
-          prefixIcon={<HiroIcon />}
+          prefixIcon={<Image src="/tomo.avif" height={30} width={30} alt="" />}
           style={{ padding: "10px 24px" }}
           onClick={() => setIsConnected(true)}
           className="md:min-w-auto min-w-[100%] w-full md:w-auto"
+          variant="subtle"
         >
-          Create Hiro Wallet
+          Connect Wallet
         </Button>
       ) : (
         <div className="md:flex gap-[24px] items-center">
           <Button
             onClick={() => setIsConnected(false)}
-            prefixIcon={<HiroIcon />}
+            prefixIcon={
+              <Image src="/tomo.avif" height={30} width={30} alt="" />
+            }
             variant="secondary"
             style={{ padding: "10px 24px" }}
             className="md:min-w-auto min-w-[100%] w-full md:w-auto"
