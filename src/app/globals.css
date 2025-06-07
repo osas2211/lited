@@ -71,6 +71,14 @@
   -webkit-text-fill-color: unset;
 }
 
+.font-mango {
+  font-family: "MangoGrotesque";
+}
+
+.font-polysans {
+  font-family: "PolySansTrial";
+}
+
 .btn-no-hover:hover {
   background: unset !important;
   color: none !important;
