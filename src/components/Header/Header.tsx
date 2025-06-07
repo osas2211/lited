@@ -23,7 +23,7 @@ const Header: FC<HeaderI> = ({ className, navItems, active, ...props }) => {
           <Link href={"/"}>
             <Logo />
           </Link>
-          <div className="hidden md:block">
+          <div className="!hidden md:block">
             <Input
               className="w-[244px]"
               placeholder="Search by title, collec..."

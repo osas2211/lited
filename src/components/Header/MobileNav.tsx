@@ -47,7 +47,7 @@ const MobileNavItems = () => {
         style={{ zIndex: "1000" }}
       >
         <div className="p-[20px] bg-grey-900 rounded-[8px] overflow-hidden">
-          <div className="flex flex justify-between items-center bg-grey-900">
+          <div className="flex justify-between items-center bg-grey-900">
             <div className="flex gap-[8px] items-center">
               <Avatar src="/nft.png" className="h-[32px] min-w-[32px]" />
               <Subtitle2Medium>Account</Subtitle2Medium>
