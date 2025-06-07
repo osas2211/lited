@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useRef } from "react"
 import { FaArrowRight } from "react-icons/fa"
 import { useGSAP } from "@gsap/react"
@@ -118,7 +119,7 @@ export const Hero = () => {
   })
   return (
     <div
-      className="max-w-[1300px] mx-auto md:h-[90vh] flex flex-col justify-center !font-mango md:py-4 py-10 overflow-x-hidden md:overflow-x-visible"
+      className="max-w-[1300px] mx-auto md:h-[91vh] flex flex-col justify-center !font-mango md:py-4 py-10 overflow-x-hidden md:overflow-x-visible"
       ref={scope}
     >
       <div>

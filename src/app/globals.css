@@ -32,7 +32,7 @@
 
 /* width */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 /* Track */
@@ -42,7 +42,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #461d50;
+  background: linear-gradient(306deg, #9813b9 0%, #ef1aac 49.48%, #e7224c 100%);
 }
 
 /* Handle on hover */
@@ -90,7 +90,7 @@
   -webkit-text-fill-color: transparent !important;
 }
 .card-shadow {
-  box-shadow: 0px 0.8px 100px 0px rgba(216, 57, 166, 0.1) inset;
+  box-shadow: 0px 0.4 100px 0px rgba(216, 57, 166, 0.1) inset;
 }
 
 .MuiModalDialog-root {

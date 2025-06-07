@@ -10,7 +10,10 @@ export default function Home() {
   return (
     <main className="overflow-x-hidden">
       <Header active="" navItems={in_app_nav_items} />
-      <Hero />
+      <div>
+        <Hero />
+        <Footer />
+      </div>
     </main>
   )
 }
