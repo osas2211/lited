@@ -47,3 +47,27 @@
   src: url(/assets/Fonts/Tenon/Fontspring-DEMO-tenon-xbold-2.otf);
   font-weight: 700;
 }
+
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url(/assets/fonts/MangoGrotesque-Medium.ttf);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url(/assets/fonts/MangoGrotesque-SemiBold.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "PolySansTrial";
+  src: url(/assets/fonts/PolySansTrial-Slim.otf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "PolySansTrial";
+  src: url(/assets/fonts/PolySansTrial-Median.otf);
+  font-weight: 500;
+}

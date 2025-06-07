@@ -38,6 +38,11 @@ const config: Config = {
           hover: "#A715CB",
           active: "#B63CD4",
         },
+        background: "#121112",
+      },
+      fontFamily: {
+        mango: ["MangoGrotesque"],
+        polysans: ["PolySansTrial"],
       },
     },
   },

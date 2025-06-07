@@ -7,14 +7,14 @@ interface TabI {
   setActivePanel: React.Dispatch<React.SetStateAction<string | number>>
   activePanel: number | string
 }
+const { Button1 } = Typography
+const activeClass = "button border-b-[3px]"
 
 export const TabPanel: React.FC<TabI> = ({
   items,
   activePanel,
   setActivePanel,
 }) => {
-  const { Button1 } = Typography
-  const activeClass = "button border-b-[3px]"
   return (
     <div className="flex gap-[32px] md:w-auto w-[180vw] no-scrollbar">
       {items?.map((item, index) => (

@@ -20,7 +20,9 @@ const Header: FC<HeaderI> = ({ className, navItems, active, ...props }) => {
     >
       <div className="flex justify-between items-center">
         <div className="flex gap-[24px] items-center">
-          <Logo />
+          <Link href={"/"}>
+            <Logo />
+          </Link>
           <div className="hidden md:block">
             <Input
               className="w-[244px]"

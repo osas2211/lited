@@ -100,6 +100,20 @@
   border: none !important;
 }
 
+.hero-video {
+  /* clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%); */
+  clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+}
+
+.hero-btn {
+  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+}
+
+.fade-in {
+  transform: translateY(100px);
+  opacity: 0;
+}
+
 @media (max-width: 760px) {
   .MuiModalDialog-root {
     width: 100% !important;
