@@ -50,24 +50,24 @@
 
 @font-face {
   font-family: "MangoGrotesque";
-  src: url(/assets/fonts/MangoGrotesque-Medium.ttf);
+  src: url(/assets/Fonts/MangoGrotesque-Medium.ttf);
   font-weight: 500;
 }
 
 @font-face {
   font-family: "MangoGrotesque";
-  src: url(/assets/fonts/MangoGrotesque-SemiBold.ttf);
+  src: url(/assets/Fonts/MangoGrotesque-SemiBold.ttf);
   font-weight: 600;
 }
 
 @font-face {
   font-family: "PolySansTrial";
-  src: url(/assets/fonts/PolySansTrial-Slim.otf);
+  src: url(/assets/Fonts/PolySansTrial-Slim.otf);
   font-weight: 400;
 }
 
 @font-face {
   font-family: "PolySansTrial";
-  src: url(/assets/fonts/PolySansTrial-Median.otf);
+  src: url(/assets/Fonts/PolySansTrial-Median.otf);
   font-weight: 500;
 }
