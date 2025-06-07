@@ -67,13 +67,13 @@ export const ButtonAlt = (props: PropsI) => {
       } overflow-hidden flex items-center justify-between gap-5`}
       id="btn-primary"
     >
-      <span className={`block btn-text font-[MangoGrotesque] ${textSize}`}>
+      <span className={`block btn-text font-mango ${textSize}`}>
         {props.children}
       </span>
       {props?.prefixIcon}
       <div className="absolute w-full h-full top-0 left-0 translate-y-[100%] z-[10] text-white btn-text-2">
-        <div className="flex items-center justify-between px-8 py-2 font-[MangoGrotesque]">
-          <span className="font-[MangoGrotesque]">{props.children}</span>
+        <div className="flex items-center justify-between px-8 py-2 font-mango">
+          <span className="font-mango">{props.children}</span>
           {props?.prefixIcon && <div></div>}
         </div>
       </div>

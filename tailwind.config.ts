@@ -40,10 +40,10 @@ const config: Config = {
         },
         background: "#121112",
       },
-      // fontFamily: {
-      //   mango: ["MangoGrotesque"],
-      //   polysans: ["PolySansTrial"],
-      // },
+      fontFamily: {
+        mango: ["MangoGrotesque"],
+        polysans: ["PolySansTrial"],
+      },
     },
   },
   plugins: [],
