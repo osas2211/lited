@@ -14,7 +14,7 @@ interface FooterI extends React.HTMLAttributes<HTMLElement> {}
 export const Footer: React.FC<FooterI> = ({ ...props }) => {
   const { Subtitle3Regular, Subtitle2Bold } = Typography
   return (
-    <footer {...props} className="bg-grey-900">
+    <footer {...props} className="bg-grey-900 relative z-[2]">
       <Container>
         <div className="flex md:flex-row flex-col justify-between">
           <div className="w-[336px]">

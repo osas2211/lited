@@ -42,7 +42,12 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(306deg, #9813b9 0%, #ef1aac 49.48%, #e7224c 100%);
+  background: linear-gradient(
+    306deg,
+    #9813b954 0%,
+    #ef1aac 49.48%,
+    #e7224d3f 100%
+  );
 }
 
 /* Handle on hover */

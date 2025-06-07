@@ -1,19 +1,16 @@
 "use client"
-import { Typography, Header, Container, Footer } from "@/components"
-import { MarketGrid } from "@/components/Grid/MarketGrid"
-import { MarketTab } from "@/components/Grid/MarketTab"
+import { Header, Footer } from "@/components"
 import { Hero } from "@/components/Landing-Page/Hero"
+import { ReImagine } from "@/components/Landing-Page/ReImagine"
 import { in_app_nav_items } from "@/constants/nav-urls"
 
-const { H3, Subtitle1Regular } = Typography
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="relative">
       <Header active="" navItems={in_app_nav_items} />
-      <div>
-        <Hero />
-        <Footer />
-      </div>
+      <Hero />
+      <ReImagine />
+      <Footer />
     </main>
   )
 }

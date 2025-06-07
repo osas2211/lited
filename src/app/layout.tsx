@@ -4,6 +4,7 @@ import localFont from "next/font/local"
 import "./globals.css"
 import { greyScale } from "@/utils/colors"
 import { ThemeProvider } from "./ThemeProvider"
+import { SmoothScroller } from "@/components/Providers/SmoothScroller"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -38,7 +39,9 @@ export default function RootLayout({
         className={`${inter.className}`}
         style={{ background: greyScale.grey1000, color: greyScale.grey0 }}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <SmoothScroller>
+          <ThemeProvider>{children}</ThemeProvider>
+        </SmoothScroller>
       </body>
     </html>
   )
