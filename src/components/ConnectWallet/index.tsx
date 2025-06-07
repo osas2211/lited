@@ -29,7 +29,7 @@ export const ConnectWallet = () => {
             style={{ padding: "10px 24px" }}
             className="md:min-w-auto min-w-[100%] w-full md:w-auto"
           >
-            SPMDM5....G2GA
+            0x5PSBW....G2GA
           </Button>
           {/* <UserIcon onClick={() => setOpen(true)} /> */}
           <ProfileNav />
