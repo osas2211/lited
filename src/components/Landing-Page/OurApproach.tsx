@@ -39,7 +39,7 @@ export const OurApproach = () => {
                     >
                       story,
                     </Link>{" "}
-                    the World's Intellecture property Blockchain. A
+                    the World&apos;s Intellecture property Blockchain. A
                     purpose-built L1 that tokenises intelligence and makes it
                     programmable.
                   </p>
