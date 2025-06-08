@@ -8,8 +8,9 @@ import gsap from "gsap"
 import { SplitText } from "gsap/SplitText"
 import { useGSAP } from "@gsap/react"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import ScrambleTextPlugin from "gsap/ScrambleTextPlugin"
 
-gsap.registerPlugin(SplitText, ScrollTrigger)
+gsap.registerPlugin(SplitText, ScrollTrigger, ScrambleTextPlugin)
 
 const textAnimation = (trigger: string, end?: string) => {
   let split = SplitText.create(trigger, { type: "words, chars" })
