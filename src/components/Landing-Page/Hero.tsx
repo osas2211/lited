@@ -120,43 +120,44 @@ export const Hero = () => {
   return (
     <div className="overflow-x-hidden">
       <div
-        className="max-w-[1300px] mx-auto md:h-[91vh] flex flex-col justify-center !font-mango md:py-4 py-10 overflow-x-hidden md:overflow-x-visible"
+        className="2xl:max-w-[1300px] xl:max-w-[1200px] lg: max-w-[900px] mx-auto md:h-[91vh] flex flex-col justify-center !font-mango md:py-4 py-10 overflow-x-hidden md:overflow-x-visible"
         ref={scope}
       >
         <div>
           <div className="relative">
-            <div className="absolute top-[0.4rem] left-[0rem] hero-video hidden md:block">
+            <div className="absolute xl:top-[0.4rem] top-[3.5rem] left-[0rem] hero-video hidden md:block">
               <video
                 autoPlay
                 loop
                 muted
                 // controls={false}
-                style={{ height: 420, width: 660 }}
+                // style={{ height: 420, width: 660 }}
+                className="xl:h-[420px] xl:w-[660px] h-[320px] w-[560px]"
               >
                 <source src="/assets/videos/hero.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
-            <div className="uppercase xl:text-[15rem] xl:leading-[12.5rem] lg:text-[12rem] lg:leading-[12.5rem] md:text-[8rem] md:leading-[8.5rem] text-[6.5rem] leading-[5.7rem] flex items-center translate-x-[32.5%] gap-[0] relative hero-top-text hero-text opacity-75 blur-[7px]">
+            <div className="uppercase xl:text-[15rem] xl:leading-[12.5rem] lg:text-[9rem] lg:leading-[12.5rem] md:text-[8rem] md:leading-[8.5rem] text-[6.5rem] leading-[5.7rem] flex items-center translate-x-[32.5%] gap-[0] relative hero-top-text hero-text opacity-75 blur-[7px]">
               <h2 className="md:bg-grey-1000  bg-transparent pr-4 relative perspective-[1900px]">
                 <span className="font-mango">Re</span>
-                <div className="font-mango text-gray-900 absolute md:-top-[0.5rem] top-[0rem] -left-[1rem] bg-yellow-300 md:px-4 px-2 md:py-[8px] md:pb-1 py-1 md:text-[2.5rem] md:leading-[2.5rem] text-[1.2rem] leading-[1rem] rotate-[-15deg]">
+                <div className="font-mango text-gray-900 absolute xl:-top-[0.5rem] md:top-[2rem] top-[0rem] -left-[1rem] bg-yellow-300 md:px-4 px-2 md:py-[8px] md:pb-1 py-1 xl:text-[2.5rem] lg:text-[1.8rem] xl:leading-[2.5rem] lg:leading-[1.5rem] text-[1.2rem] leading-[1rem] rotate-[-15deg]">
                   Music
                 </div>
               </h2>
               <h2 className="md:bg-grey-1000  bg-transparent relative z-[1]">
-                <span className="font-mango md:pl-4">think</span>
-                <div className="font-mango text-gray-900 absolute bottom-[1.5rem] -right-[2rem] bg-purple-300 md:px-4 px-2 md:py-[8px] md:pb-1 py-1 md:text-[2.5rem] md:leading-[2.5rem] text-[1.2rem] leading-[1rem] rotate-[15deg]">
+                <span className="font-mango xl:pl-4 md:pl-0 pl-0">think</span>
+                <div className="font-mango text-gray-900 absolute xl:bottom-[1.5rem] md:bottom-[3rem] bottom-[1.2rem] -right-[2rem] bg-purple-300 md:px-4 px-2 md:py-[8px] md:pb-1 py-1 xl:text-[2.5rem] lg:text-[1.8rem] xl:leading-[2.5rem] lg:leading-[1.5rem] text-[1.2rem] leading-[1rem] rotate-[15deg]">
                   Art
                 </div>
               </h2>
             </div>
             <div className="h-[2.2rem] w-full md:bg-grey-1000  bg-transparent relative -mt-8 md:block hidden"></div>
-            <div className="uppercase xl:text-[15rem] xl:leading-[9rem] lg:text-[12rem] lg:leading-[12.5rem] md:text-[8rem] md:leading-[8.5rem] text-[6.5rem] leading-[5.7rem] hero-bottom-text -translate-x-[-25%] hero-text opacity-75 blur-[7px]">
+            <div className="uppercase xl:text-[15rem] xl:leading-[9rem] lg:text-[9rem] lg:leading-[12.5rem] md:text-[8rem] md:leading-[8.5rem] text-[6.5rem] leading-[5.7rem] hero-bottom-text -translate-x-[-25%] hero-text opacity-75 blur-[7px]">
               <h2 className="md:bg-grey-1000  bg-transparent relative inline-block">
                 <span className="pl-4 font-mango">Everything</span>
-                <div className="font-mango text-gray-900 absolute bottom-[1rem] right-[-1.5rem] bg-orange-200 md:px-4 px-2 md:py-[8px] md:pb-1 py-1 md:text-[2.5rem] md:leading-[2.5rem] text-[1.2rem] leading-[1rem] rotate-[-8deg]">
-                  Photography
+                <div className="font-mango text-gray-900 absolute xl:bottom-[1rem] md:bottom-[3rem] bottom-[1rem] right-[-1.5rem] bg-orange-200 md:px-4 px-2 md:py-[8px] md:pb-1 py-1 xl:text-[2.5rem] lg:text-[1.8rem] xl:leading-[2.5rem] lg:leading-[1.5rem] text-[1.2rem] leading-[1rem] rotate-[-8deg]">
+                  Creativity
                 </div>
               </h2>
             </div>
