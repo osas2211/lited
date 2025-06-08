@@ -55,7 +55,7 @@ export const OurApproach = () => {
                   href={"/register-ip"}
                   className="md:mt-[7rem] mt-[3rem] inline-block font-polysans underline underline-offset-[7px]"
                 >
-                  Register an Intellecture Property
+                  Register your Intellecture Property
                 </Link>
               </div>
             </div>
