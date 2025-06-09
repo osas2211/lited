@@ -28,7 +28,7 @@ const Header: FC<HeaderI> = ({ className, navItems, active, ...props }) => {
               <Input
                 className="w-[244px]"
                 placeholder="Search by title, collec..."
-                prefixIcon={<SearchIcon />}
+                prefixicon={<SearchIcon />}
               />
             </div>
           </div>

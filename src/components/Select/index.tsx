@@ -2,13 +2,13 @@
 import React, { FC, useState } from "react"
 
 interface SelectI extends React.HTMLAttributes<HTMLDivElement> {
-  prefixIcon?: React.ReactNode
+  prefixicon?: React.ReactNode
   suffixIcon?: React.ReactNode
   options?: { value: string; label: string }[]
 }
 
 const Select: FC<SelectI> = ({
-  prefixIcon,
+  prefixicon,
   className,
   suffixIcon,
   options,
@@ -25,7 +25,7 @@ const Select: FC<SelectI> = ({
         {...props}
         className={`
        bg-grey-700 text-grey-0 cursor-pointer relative
-      ${prefixIcon ? "px-[42px]" : "px-[16px]"} py-[12px] 
+      ${prefixicon ? "px-[42px]" : "px-[16px]"} py-[12px] 
       w-[200px] border-[1px] border-grey-700 rounded-[8px]
       focus:outline-none focus:border-primary-default hover:border-[#9813B9]
       placeholder:text-grey-300 placeholder:text-[16px] font-[400] text-[16px]
@@ -34,9 +34,9 @@ const Select: FC<SelectI> = ({
       >
         {props?.placeholder?.slice(0, 12)}...
       </div>
-      {prefixIcon && (
+      {prefixicon && (
         <div className="absolute top-[50%] left-[16px] translate-y-[-50%]">
-          {prefixIcon}
+          {prefixicon}
         </div>
       )}
       <div className="absolute top-[50%] right-[16px] translate-y-[-50%]">

@@ -42,7 +42,7 @@ export const LiveStream = () => {
               </div>
 
               <Button
-                prefixIcon={<StreamIcon />}
+                prefixicon={<StreamIcon />}
                 className="md:min-w-[110px] md:max-h-[45px] md:min-h-[45px] min-w-[90px] max-h-[35px] min-h-[35px]"
                 style={{ padding: 0 }}
               >

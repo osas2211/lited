@@ -10,7 +10,7 @@ export const ConnectWallet = () => {
     <div>
       {!isConnected ? (
         <Button
-          prefixIcon={<Image src="/tomo.avif" height={30} width={30} alt="" />}
+          prefixicon={<Image src="/tomo.avif" height={30} width={30} alt="" />}
           style={{ padding: "10px 24px" }}
           onClick={() => setIsConnected(true)}
           className="md:min-w-auto min-w-[100%] w-full md:w-auto"
@@ -22,7 +22,7 @@ export const ConnectWallet = () => {
         <div className="md:flex gap-[24px] items-center">
           <Button
             onClick={() => setIsConnected(false)}
-            prefixIcon={
+            prefixicon={
               <Image src="/tomo.avif" height={30} width={30} alt="" />
             }
             variant="secondary"

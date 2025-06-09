@@ -27,7 +27,7 @@ export const GridFilter: FC<FilterI> = ({ setGrid, grid, showSearch }) => {
       {showSearch ? (
         <Input
           placeholder="Search by name"
-          prefixIcon={<SearchIcon />}
+          prefixicon={<SearchIcon />}
           className="md:w-[240px] w-[172px]"
         />
       ) : (

@@ -1,13 +1,13 @@
 import React, { FC } from "react"
 
 interface InputI extends React.InputHTMLAttributes<HTMLInputElement> {
-  prefixIcon?: React.ReactNode
+  prefixicon?: React.ReactNode
   suffixIcon?: React.ReactNode
   fullwidth?: boolean
 }
 
 const Input: FC<InputI> = ({
-  prefixIcon,
+  prefixicon,
   className,
   fullwidth,
   suffixIcon,
@@ -20,7 +20,7 @@ const Input: FC<InputI> = ({
         className={`
        bg-grey-700 text-grey-0 inline-block
        ${suffixIcon ? "pr-[42px]" : "px-[16px]"}
-      ${prefixIcon ? "px-[42px]" : "px-[16px]"} py-[12px] 
+      ${prefixicon ? "px-[42px]" : "px-[16px]"} py-[12px] 
       ${
         fullwidth ? "w-full" : "w-[200px]"
       } border-[1px] border-grey-700 rounded-[8px]
@@ -30,7 +30,7 @@ const Input: FC<InputI> = ({
        ${className ? className : ""}`}
       />
       <div className="absolute top-[50%] left-[16px] translate-y-[-50%]">
-        {prefixIcon}
+        {prefixicon}
       </div>
       <div className="absolute top-[50%] right-[16px] translate-y-[-50%]">
         {suffixIcon}

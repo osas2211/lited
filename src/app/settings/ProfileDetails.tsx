@@ -43,22 +43,22 @@ export const ProfileDetails = () => {
               </Subtitle2Medium>
               <div className="flex flex-col gap-[8px]">
                 <Input
-                  prefixIcon={<FacebookIcon />}
+                  prefixicon={<FacebookIcon />}
                   placeholder="Your facebook handle"
                   className="w-full"
                 />
                 <Input
-                  prefixIcon={<TwitterIcon />}
+                  prefixicon={<TwitterIcon />}
                   placeholder="Your twitter handle"
                   className="w-full"
                 />
                 <Input
-                  prefixIcon={<InstagramIcon />}
+                  prefixicon={<InstagramIcon />}
                   placeholder="Your instagram handle"
                   className="w-full"
                 />
                 <Input
-                  prefixIcon={<WebIcon />}
+                  prefixicon={<WebIcon />}
                   placeholder="Yourwebsite.com"
                   className="w-full"
                 />

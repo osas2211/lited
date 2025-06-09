@@ -6,7 +6,7 @@ export const VideoPlayer = () => {
   return (
     <div className="relative md:w-[30%] w-full md:h-[590px] h-[457px]">
       <div className="absolute top-[16px] left-[16px]">
-        <Button prefixIcon={<EthAltIcon />} style={{ background: "#EA3A60" }}>
+        <Button prefixicon={<EthAltIcon />} style={{ background: "#EA3A60" }}>
           Ethereum chain
         </Button>
       </div>

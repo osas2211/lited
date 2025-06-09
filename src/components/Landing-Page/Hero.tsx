@@ -202,7 +202,7 @@ export const Hero = () => {
             </div>
             <div className="hero-btn">
               <ButtonAlt
-                prefixIcon={<FaArrowRight className="text-white" />}
+                prefixicon={<FaArrowRight className="text-white" />}
                 onClick={() => tl.current.restart()}
                 // className="md:!w-auto !w-full"
               >

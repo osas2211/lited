@@ -11,7 +11,7 @@ export const Filter = () => {
         <Button
           variant="secondary"
           size="small"
-          prefixIcon={<FilterIcon />}
+          prefixicon={<FilterIcon />}
           prefixClass="mr-[-8px] md:mr-[0px]"
           className="btn-no-hover min-w-[35px] py-[8px] md:py-[12px] md:min-w-[120px] rounded-[12px] md:imline-block md:rounded-[80px]"
         >

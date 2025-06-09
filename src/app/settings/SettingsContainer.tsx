@@ -21,7 +21,7 @@ export const SettingsContainer: FC<{ children: React.ReactNode }> = ({
               <H3>Settings</H3>
               <MobileSettingsNav />
             </div>
-            <Button prefixIcon={<EyeFilledIcon />} variant="secondary">
+            <Button prefixicon={<EyeFilledIcon />} variant="secondary">
               View profile
             </Button>
           </div>

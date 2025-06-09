@@ -19,7 +19,7 @@ export const MobileNav = () => {
       <Input
         className="py-[8px]"
         placeholder="Search by title, collec..."
-        prefixIcon={<SearchIcon />}
+        prefixicon={<SearchIcon />}
       />
       <Avatar src="/nft.png" className="h-[32px] min-w-[32px]" />
 

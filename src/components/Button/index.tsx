@@ -5,7 +5,7 @@ import classNames from "classnames"
 
 interface ButtonI extends React.HTMLAttributes<HTMLButtonElement> {
   size?: "large" | "medium" | "small"
-  prefixIcon?: React.ReactNode
+  prefixicon?: React.ReactNode
   sufficIcon?: React.ReactNode
   variant?: "primary" | "secondary" | "subtle" | "text"
   disabled?: boolean
@@ -14,7 +14,7 @@ interface ButtonI extends React.HTMLAttributes<HTMLButtonElement> {
 
 const Button: FC<ButtonI> = ({
   size,
-  prefixIcon,
+  prefixicon,
   sufficIcon,
   variant,
   className,
@@ -114,7 +114,7 @@ const Button: FC<ButtonI> = ({
           prefixClass
         )}
       >
-        {prefixIcon}
+        {prefixicon}
         <Text />
         {sufficIcon}
       </span>

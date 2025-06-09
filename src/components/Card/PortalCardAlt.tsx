@@ -25,7 +25,7 @@ export const PortalCardAlt: React.FC<props> = ({ ...props }) => {
         <div className="p-[10px] rounded-[20px] absolute top-[0] left-[0] z-10 w-full">
           <div className="w-[100%] flex justify-between">
             <Button
-              prefixIcon={<StreamIcon />}
+              prefixicon={<StreamIcon />}
               className="min-w-[80px] max-h-[30px] min-h-[30px] min-h-[30px]"
               style={{ padding: 0 }}
             >

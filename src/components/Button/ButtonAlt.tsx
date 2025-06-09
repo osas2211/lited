@@ -4,7 +4,7 @@ import { HtmlHTMLAttributes, ReactNode, useEffect, useRef } from "react"
 
 interface PropsI extends HtmlHTMLAttributes<HTMLButtonElement> {
   variant?: string
-  prefixIcon?: ReactNode
+  prefixicon?: ReactNode
   size?: "small" | "default"
 }
 export const ButtonAlt = (props: PropsI) => {
@@ -70,11 +70,11 @@ export const ButtonAlt = (props: PropsI) => {
       <span className={`block btn-text font-mango ${textSize}`}>
         {props.children}
       </span>
-      {props?.prefixIcon}
+      {props?.prefixicon}
       <div className="absolute w-full h-full top-0 left-0 translate-y-[100%] z-[10] text-white btn-text-2">
         <div className="flex items-center justify-between px-8 py-2 font-mango">
           <span className="font-mango">{props.children}</span>
-          {props?.prefixIcon && <div></div>}
+          {props?.prefixicon && <div></div>}
         </div>
       </div>
     </button>

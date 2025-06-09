@@ -31,7 +31,7 @@ export const Message = () => {
           <Input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            prefixIcon={<Send2Icon />}
+            prefixicon={<Send2Icon />}
             className={inputStyle}
             placeholder="Send a message"
             suffixIcon={
