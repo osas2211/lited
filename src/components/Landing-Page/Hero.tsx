@@ -6,7 +6,7 @@ import gsap from "gsap"
 import { ButtonAlt } from "../Button/ButtonAlt"
 
 export const Hero = () => {
-  const scope: React.RefObject<HTMLDivElement> = useRef(null)
+  const scope = useRef<HTMLDivElement>(null)
   const tl = useRef(gsap.timeline({ paused: true }))
   const matchMedia = gsap.matchMedia()
   useGSAP(

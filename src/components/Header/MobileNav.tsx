@@ -10,7 +10,7 @@ import {
   SettingsIcon,
 } from "../Icons"
 import Link from "next/link"
-import { ConnectWallet } from "../ConnectWallet"
+import { TomoSocialConnect } from "../ConnectWallet/TomoSocialConnect"
 
 export const MobileNav = () => {
   const [showNavItems, setShowNavItems] = React.useState(false)
@@ -139,7 +139,9 @@ const MobileNavItems = () => {
           />
         </div>
 
-        <ConnectWallet />
+        <div className="flex items-center justify-center">
+          <TomoSocialConnect />
+        </div>
       </div>
     </>
   )

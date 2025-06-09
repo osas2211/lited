@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   images: {
     remotePatterns: [
       {
@@ -16,6 +16,5 @@ const nextConfig = {
       },
     ],
   },
+  transpilePackages: ["@tomo-inc/tomo-evm-kit"],
 }
-
-module.exports = nextConfig

@@ -5,6 +5,7 @@ interface SelectI extends React.HTMLAttributes<HTMLDivElement> {
   prefixicon?: React.ReactNode
   suffixIcon?: React.ReactNode
   options?: { value: string; label: string }[]
+  placeholder?: string
 }
 
 const Select: FC<SelectI> = ({

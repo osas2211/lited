@@ -5,6 +5,7 @@ import "./globals.css"
 import { greyScale } from "@/utils/colors"
 import { ThemeProvider } from "./ThemeProvider"
 import { SmoothScroller } from "@/components/Providers/SmoothScroller"
+import { TomoProvider } from "@/components/Providers/TomoProvider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -39,9 +40,11 @@ export default function RootLayout({
         className={`${inter.className}`}
         style={{ background: greyScale.grey1000, color: greyScale.grey0 }}
       >
-        <SmoothScroller>
-          <ThemeProvider>{children}</ThemeProvider>
-        </SmoothScroller>
+        <TomoProvider>
+          <SmoothScroller>
+            <ThemeProvider>{children}</ThemeProvider>
+          </SmoothScroller>
+        </TomoProvider>
       </body>
     </html>
   )

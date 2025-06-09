@@ -5,6 +5,7 @@ import { SearchIcon } from "../Icons"
 import Link from "next/link"
 import { ConnectWallet } from "../ConnectWallet"
 import { MobileNav } from "./MobileNav"
+import { TomoSocialConnect } from "../ConnectWallet/TomoSocialConnect"
 interface HeaderI extends React.HTMLAttributes<HTMLDivElement> {
   navItems: { name: string; route: string }[]
   active: string
@@ -35,7 +36,7 @@ const Header: FC<HeaderI> = ({ className, navItems, active, ...props }) => {
 
           <div className="md:flex md:items-center md:gap-[24px] hidden">
             <Nav items={navItems} active={active} />
-            <ConnectWallet />
+            <TomoSocialConnect />
           </div>
           <MobileNav />
         </div>

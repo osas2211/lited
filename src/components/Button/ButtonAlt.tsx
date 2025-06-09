@@ -8,7 +8,7 @@ interface PropsI extends HtmlHTMLAttributes<HTMLButtonElement> {
   size?: "small" | "default"
 }
 export const ButtonAlt = (props: PropsI) => {
-  const buttonRef: React.RefObject<HTMLButtonElement> = useRef(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const tl = useRef(gsap.timeline({ paused: true }))
   useGSAP(() => {
     tl.current

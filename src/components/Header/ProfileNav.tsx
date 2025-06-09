@@ -12,13 +12,13 @@ import {
   SettingsIcon,
 } from "../Icons"
 
-export const ProfileNav = () => {
+export const ProfileNav = ({ profile_img = "" }: { profile_img?: string }) => {
   const { Subtitle3Medium } = Typography
   return (
     <div className="hidden md:block">
       <Dropdown>
         <MenuButton slots={{ root: Box }}>
-          <UserIcon />
+          <UserIcon imageSrc={profile_img} />
         </MenuButton>
         <Menu className="bg-grey-800 p-[12px] w-full md:w-auto">
           <MenuItem>
