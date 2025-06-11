@@ -1,14 +1,18 @@
 "use client"
-import React from "react"
+import React, { useState } from "react"
 import { ArrowRightIcon } from "@/components/Icons"
 import { Button, Input, Typography } from "@/components"
 import { FileUploadInput } from "@/components/Input"
+import { AddCreators } from "./Creators"
+import { IpCreator } from "@story-protocol/core-sdk"
 
 const { Caption2Regular, Subtitle2Medium, Subtitle3Regular } = Typography
 const inputStyle =
   "w-full bg-grey-1 mt-[12px] placeholder:text-grey-500 text-grey-100 active:border-grey-500 hover:border-grey-500 border-[1px] border-grey-700 rounded-[8px]"
 
 export const RegisterIpForm = () => {
+  const [creators, setCreators] = useState<IpCreator[]>([])
+
   return (
     <div>
       <div className="my-[30px] md:my-[24px] w-full mx-auto">
@@ -63,20 +67,16 @@ export const RegisterIpForm = () => {
               </label>
               <FileUploadInput
                 onFileSelect={(file) => {}}
-                accept=".jpg, .png, .jpeg"
+                accept=".mp3"
                 id="song"
               />
             </div>
           </div>
           <div>
-            <label htmlFor="Collaborators">
+            <label htmlFor="creators">
               <Subtitle2Medium>Collaborators (optional)</Subtitle2Medium>
             </label>
-            <Input
-              id="Collaborators"
-              className={inputStyle}
-              placeholder="Enter collaborators"
-            />
+            <AddCreators {...{ creators, setCreators }} />
           </div>
           <div>
             <label htmlFor="Tags">
@@ -85,30 +85,13 @@ export const RegisterIpForm = () => {
             <Input
               id="Tags"
               className={inputStyle}
-              placeholder="Enter tags to help find your portal better"
+              placeholder="Enter tags to help find your song better"
             />
-          </div>
-          <div>
-            <label htmlFor="Language">
-              <Subtitle2Medium>Language (optional)</Subtitle2Medium>
-            </label>
-            <select
-              id="Language"
-              className={`${inputStyle} p-[14px] border-[1px] border-grey-700 rounded-[8px]
-      focus:outline-none focus:border-primary-default hover:border-[#9813B9]
-      placeholder:text-grey-300 placeholder:text-[16px] font-[400] text-[16px]
-      disabled:border-grey-400 disabled:placeholder:text-grey-400 disabled:bg-grey-900 bg-grey-700 text-grey-0`}
-              // placeholder="Pick something"
-            >
-              <option value="English">English</option>
-              <option value="French">French</option>
-              <option value="Spanish">Spanish</option>
-            </select>
           </div>
 
           <div className="flex items-center justify-between">
             <Subtitle2Medium className="text-grey-300">
-              Is this portal an explicit & sensitive content?
+              Is this song an explicit & sensitive content?
             </Subtitle2Medium>
 
             <label className="relative inline-flex items-center cursor-pointer">

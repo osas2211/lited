@@ -10,6 +10,7 @@ interface ButtonI extends React.HTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "subtle" | "text"
   disabled?: boolean
   prefixClass?: string
+  buttonType?: "submit" | "reset" | "button"
 }
 
 const Button: FC<ButtonI> = ({
@@ -21,6 +22,7 @@ const Button: FC<ButtonI> = ({
   style,
   disabled,
   prefixClass,
+  buttonType,
   ...props
 }) => {
   const { Button1, Button2, Button3 } = Typography
@@ -97,6 +99,7 @@ const Button: FC<ButtonI> = ({
   return (
     <button
       disabled={disabled}
+      type={buttonType || "button"}
       {...props}
       style={{
         background: bg,

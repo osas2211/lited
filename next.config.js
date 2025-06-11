@@ -16,5 +16,6 @@ module.exports = {
       },
     ],
   },
+  reactStrictMode: true,
   transpilePackages: ["@tomo-inc/tomo-evm-kit"],
 }
