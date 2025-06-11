@@ -10,7 +10,8 @@ const { H6, Subtitle2Medium, Subtitle3Regular } = Typography
 const formItems = [
   { heading: "Music", element: <RegisterIpForm /> },
   { heading: "Painting", element: <Form /> },
-  { heading: "Photography", element: <Form /> },
+  { heading: "Video", element: <Form /> },
+  { heading: "Photo", element: <Form /> },
 ]
 
 const RegisterIPPage = () => {

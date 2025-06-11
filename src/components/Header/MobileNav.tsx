@@ -11,6 +11,9 @@ import {
 } from "../Icons"
 import Link from "next/link"
 import { TomoSocialConnect } from "../ConnectWallet/TomoSocialConnect"
+import { in_app_nav_items } from "@/constants/nav-urls"
+import { usePathname } from "next/navigation"
+import { useAccount, useDisconnect } from "wagmi"
 
 export const MobileNav = () => {
   const [showNavItems, setShowNavItems] = React.useState(false)
@@ -40,6 +43,10 @@ export const MobileNav = () => {
 const MobileNavItems = () => {
   const { Subtitle2Medium, Subtitle3Medium } = Typography
   const [showProfileNav, setShowProfileNav] = React.useState(false)
+  const pathname = usePathname()
+  const active = in_app_nav_items.find(({ route }) => route === pathname)
+  const { disconnect } = useDisconnect()
+  const { isConnected } = useAccount()
   return (
     <>
       <div
@@ -109,34 +116,23 @@ const MobileNavItems = () => {
                 </Subtitle3Medium>
               </Link>
 
-              <div className="flex gap-[12px] items-center p-[12px]">
-                <LogoutIcon />
-                <Subtitle3Medium className="text-grey-0">
-                  Disconnect Wallet
-                </Subtitle3Medium>
-              </div>
+              {isConnected && (
+                <div
+                  className="flex gap-[12px] items-center p-[12px]"
+                  onClick={() => disconnect()}
+                >
+                  <LogoutIcon />
+                  <Subtitle3Medium className="text-grey-0">
+                    Disconnect Wallet
+                  </Subtitle3Medium>
+                </div>
+              )}
             </div>
           )}
         </div>
 
         <div>
-          <Nav
-            items={[
-              {
-                name: "market",
-                route: "/",
-              },
-              {
-                name: "stack",
-                route: "/",
-              },
-              {
-                name: "launchpad",
-                route: "/launchpad",
-              },
-            ]}
-            active="market"
-          />
+          <Nav items={in_app_nav_items} active={active?.name!!} />
         </div>
 
         <div className="flex items-center justify-center">
