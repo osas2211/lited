@@ -55,7 +55,7 @@ export const OurApproach = () => {
               </p>
               <div className="col-span-2 md:w-[75%]">
                 <p className="mb-8 font-polysans md:text-2xl text-lg text-2">
-                  Blockchain is the new frontier of art and creativity.
+                  Story is the new frontier of art and creativity.
                 </p>
                 <div className="space-y-7 text-grey-300">
                   <p className="font-polysans text-3">
@@ -68,7 +68,7 @@ export const OurApproach = () => {
                   <p className="font-polysans">
                     <span className="text-3">Lited leverages</span>{" "}
                     <Link
-                      href={"story.xyz"}
+                      href={"https://www.story.xyz"}
                       target="_blank"
                       className="text-primary-active underline"
                     >

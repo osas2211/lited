@@ -1,6 +1,6 @@
 import Typography from "./Typography"
 import Button from "./Button"
-import Input from "./Input"
+import { Input } from "./Input"
 import Select from "./Select"
 import { Header } from "./Header"
 import { Footer } from "./Footer"

@@ -6,7 +6,7 @@ import {
   TomoEVMKitProvider,
 } from "@tomo-inc/tomo-evm-kit"
 import { WagmiProvider } from "wagmi"
-import { sepolia } from "wagmi/chains"
+import { sepolia, storyAeneid } from "wagmi/chains"
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
 import { env_vars } from "@/constants/env_vars"
 import {
@@ -21,7 +21,7 @@ const config = getDefaultConfig({
   clientId: env_vars.tomo_client_id,
   appName: "LiTED",
   projectId: env_vars.wallet_connect_project_id,
-  chains: [sepolia],
+  chains: [storyAeneid],
   ssr: true, // If your dApp uses server-side rendering (SSR),
   wallets: [
     {

@@ -2,12 +2,13 @@
 import React from "react"
 import { ArrowRightIcon } from "@/components/Icons"
 import { Button, Input, Typography } from "@/components"
+import { FileUploadInput } from "@/components/Input"
 
-const { H6, Subtitle2Medium, Subtitle3Regular } = Typography
+const { Caption2Regular, Subtitle2Medium, Subtitle3Regular } = Typography
 const inputStyle =
   "w-full bg-grey-1 mt-[12px] placeholder:text-grey-500 text-grey-100 active:border-grey-500 hover:border-grey-500 border-[1px] border-grey-700 rounded-[8px]"
 
-export const Form = () => {
+export const RegisterIpForm = () => {
   return (
     <div>
       <div className="my-[30px] md:my-[24px] w-full mx-auto">
@@ -24,7 +25,7 @@ export const Form = () => {
           </div>
           <div>
             <label htmlFor="description">
-              <Subtitle2Medium>Description (optional)</Subtitle2Medium>
+              <Subtitle2Medium>Description</Subtitle2Medium>
             </label>
             <textarea
               id="description"
@@ -32,7 +33,49 @@ export const Form = () => {
       focus:outline-none focus:border-primary-default hover:border-[#9813B9]
       placeholder:text-grey-300 placeholder:text-[16px] font-[400] text-[16px]
       disabled:border-grey-400 disabled:placeholder:text-grey-400 disabled:bg-grey-900 bg-grey-700 text-grey-0`}
-              placeholder="Enter a detailed description of your portals"
+              placeholder="Enter a detailed description of your Ip or Song"
+            />
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="thumbnail">
+                <Subtitle2Medium>Thumbnail</Subtitle2Medium>
+                <Caption2Regular className="text-grey-300">
+                  Recommended thumbnail aspect ratio is 1:1
+                </Caption2Regular>
+                {/* <Caption2Regular className="text-grey-300">
+                  Recommended thumbnail aspect ratio is 16:9
+                </Caption2Regular> */}
+              </label>
+              <FileUploadInput
+                onFileSelect={(file) => {}}
+                accept=".jpg, .png, .jpeg"
+                id="thumbnail"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="song">
+                <Subtitle2Medium>Song</Subtitle2Medium>
+                <Caption2Regular className="text-grey-300">
+                  Max size is 20MB
+                </Caption2Regular>
+              </label>
+              <FileUploadInput
+                onFileSelect={(file) => {}}
+                accept=".jpg, .png, .jpeg"
+                id="song"
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="Collaborators">
+              <Subtitle2Medium>Collaborators (optional)</Subtitle2Medium>
+            </label>
+            <Input
+              id="Collaborators"
+              className={inputStyle}
+              placeholder="Enter collaborators"
             />
           </div>
           <div>
@@ -47,7 +90,7 @@ export const Form = () => {
           </div>
           <div>
             <label htmlFor="Language">
-              <Subtitle2Medium>Language</Subtitle2Medium>
+              <Subtitle2Medium>Language (optional)</Subtitle2Medium>
             </label>
             <select
               id="Language"
