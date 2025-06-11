@@ -50,86 +50,88 @@ const MobileNavItems = () => {
   return (
     <>
       <div
-        className="absolute top-[5rem] left-0 w-full bg-grey-1000 px-[16px] py-[9px] flex flex-col gap-[32px] pb-[64px]"
+        className="absolute top-[3.5rem] left-0 w-full bg-grey-1000 px-[16px] py-[9px] flex flex-col gap-[32px] pb-[64px]"
         style={{ zIndex: "1000" }}
       >
-        <div className="p-[20px] bg-grey-900 rounded-[8px] overflow-hidden">
-          <div className="flex justify-between items-center bg-grey-900">
-            <div className="flex gap-[8px] items-center">
-              <Avatar src="/nft.png" className="h-[32px] min-w-[32px]" />
-              <Subtitle2Medium>Account</Subtitle2Medium>
+        {isConnected && (
+          <div className="p-[20px] bg-grey-900 rounded-[8px] overflow-hidden">
+            <div className="flex justify-between items-center bg-grey-900">
+              <div className="flex gap-[8px] items-center">
+                <Avatar src="/nft.png" className="h-[32px] min-w-[32px]" />
+                <Subtitle2Medium>Account</Subtitle2Medium>
+              </div>
+              <div
+                onClick={() => setShowProfileNav(!showProfileNav)}
+                className={`${
+                  showProfileNav ? "rotate-[180deg]" : "rotate-[0deg]"
+                } transition-all`}
+              >
+                <ArrowUpIcon />
+              </div>
             </div>
-            <div
-              onClick={() => setShowProfileNav(!showProfileNav)}
-              className={`${
-                showProfileNav ? "rotate-[180deg]" : "rotate-[0deg]"
-              } transition-all`}
-            >
-              <ArrowUpIcon />
-            </div>
-          </div>
 
-          {showProfileNav && (
-            <div
-              className="py-[12px] transition-all duration-300 mt-[12px]"
-              style={{
-                boxShadow: "0px 1px 100px 0px rgba(0, 0, 0, 0.20) inset",
-              }}
-            >
-              <Link
-                href={"/profile"}
-                className="flex gap-[12px] items-center p-[12px]"
+            {showProfileNav && (
+              <div
+                className="py-[12px] transition-all duration-300 mt-[12px]"
+                style={{
+                  boxShadow: "0px 1px 100px 0px rgba(0, 0, 0, 0.20) inset",
+                }}
               >
-                <ProfileCircleIcon />
-                <Subtitle3Medium className="text-grey-0 text-[16px]">
-                  Profile
-                </Subtitle3Medium>
-              </Link>
-
-              <Link
-                href={"/profile"}
-                className="flex gap-[12px] items-center p-[12px]"
-              >
-                <Heart2Icon />
-                <Subtitle3Medium className="text-grey-0 text-[16px]">
-                  Favourites
-                </Subtitle3Medium>
-              </Link>
-
-              <Link
-                href={"/profile"}
-                className="flex gap-[12px] items-center p-[12px]"
-              >
-                <ElementIcon />
-                <Subtitle3Medium className="text-grey-0 text-[16px]">
-                  My Collections
-                </Subtitle3Medium>
-              </Link>
-
-              <Link
-                href={"/settings"}
-                className="flex gap-[12px] items-center p-[12px]"
-              >
-                <SettingsIcon />
-                <Subtitle3Medium className="text-grey-0 text-[16px]">
-                  Settings
-                </Subtitle3Medium>
-              </Link>
-
-              {isConnected && (
-                <div
+                <Link
+                  href={"/profile"}
                   className="flex gap-[12px] items-center p-[12px]"
-                  onClick={() => disconnect()}
                 >
-                  <LogoutIcon />
-                  <Subtitle3Medium className="text-grey-0">
-                    Disconnect Wallet
+                  <ProfileCircleIcon />
+                  <Subtitle3Medium className="text-grey-0 text-[16px]">
+                    Profile
                   </Subtitle3Medium>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+                </Link>
+
+                <Link
+                  href={"/profile"}
+                  className="flex gap-[12px] items-center p-[12px]"
+                >
+                  <Heart2Icon />
+                  <Subtitle3Medium className="text-grey-0 text-[16px]">
+                    Favourites
+                  </Subtitle3Medium>
+                </Link>
+
+                <Link
+                  href={"/profile"}
+                  className="flex gap-[12px] items-center p-[12px]"
+                >
+                  <ElementIcon />
+                  <Subtitle3Medium className="text-grey-0 text-[16px]">
+                    My Collections
+                  </Subtitle3Medium>
+                </Link>
+
+                <Link
+                  href={"/settings"}
+                  className="flex gap-[12px] items-center p-[12px]"
+                >
+                  <SettingsIcon />
+                  <Subtitle3Medium className="text-grey-0 text-[16px]">
+                    Settings
+                  </Subtitle3Medium>
+                </Link>
+
+                {isConnected && (
+                  <div
+                    className="flex gap-[12px] items-center p-[12px]"
+                    onClick={() => disconnect()}
+                  >
+                    <LogoutIcon />
+                    <Subtitle3Medium className="text-grey-0">
+                      Disconnect Wallet
+                    </Subtitle3Medium>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
 
         <div>
           <Nav items={in_app_nav_items} active={active?.name!!} />

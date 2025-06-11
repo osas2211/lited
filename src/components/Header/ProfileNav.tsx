@@ -11,9 +11,12 @@ import {
   ProfileCircleIcon,
   SettingsIcon,
 } from "../Icons"
+import { useAccount, useDisconnect } from "wagmi"
 
 export const ProfileNav = ({ profile_img = "" }: { profile_img?: string }) => {
   const { Subtitle3Medium } = Typography
+  const { disconnect } = useDisconnect()
+  const { isConnected } = useAccount()
   return (
     <div className="hidden md:block">
       <Dropdown>
@@ -54,14 +57,19 @@ export const ProfileNav = ({ profile_img = "" }: { profile_img?: string }) => {
               </Subtitle3Medium>
             </Link>
           </MenuItem>
-          <MenuItem>
-            <div className="flex gap-[12px] items-center">
-              <LogoutIcon />
-              <Subtitle3Medium className="text-grey-0">
-                Disconnect Wallet
-              </Subtitle3Medium>
-            </div>
-          </MenuItem>
+          {isConnected && (
+            <MenuItem>
+              <div
+                className="flex gap-[12px] items-center"
+                onClick={() => disconnect()}
+              >
+                <LogoutIcon />
+                <Subtitle3Medium className="text-grey-0">
+                  Disconnect Wallet
+                </Subtitle3Medium>
+              </div>
+            </MenuItem>
+          )}
         </Menu>
       </Dropdown>
     </div>
