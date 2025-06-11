@@ -38,7 +38,7 @@ const H4: React.FC<Heading> = ({ className, ...props }) => {
   return (
     <h4
       {...props}
-      className={`md:text-[32px] font-[700] font-[Arvo] md:leading-[44px] ${
+      className={`md:text-[32px] text-[20px] font-[700] font-[Arvo] md:leading-[44px] ${
         className ? className : ""
       }`}
     ></h4>
