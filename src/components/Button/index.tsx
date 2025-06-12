@@ -2,6 +2,7 @@ import React, { FC } from "react"
 import { Typography } from ".."
 import { gradient, greyScale } from "@/utils/colors"
 import classNames from "classnames"
+import { ClipLoader } from "react-spinners"
 
 interface ButtonI extends React.HTMLAttributes<HTMLButtonElement> {
   size?: "large" | "medium" | "small"
@@ -11,6 +12,7 @@ interface ButtonI extends React.HTMLAttributes<HTMLButtonElement> {
   disabled?: boolean
   prefixClass?: string
   buttonType?: "submit" | "reset" | "button"
+  isLoading?: boolean
 }
 
 const Button: FC<ButtonI> = ({
@@ -23,6 +25,7 @@ const Button: FC<ButtonI> = ({
   disabled,
   prefixClass,
   buttonType,
+  isLoading,
   ...props
 }) => {
   const { Button1, Button2, Button3 } = Typography
@@ -52,6 +55,7 @@ const Button: FC<ButtonI> = ({
   const bg = variants[variant ? variant : "primary"].bg
   const color = variants[variant ? variant : "primary"].color
   const border = variants[variant ? variant : "primary"].border
+  const isDisabled = isLoading || disabled
 
   const sizes = {
     small: {
@@ -98,29 +102,38 @@ const Button: FC<ButtonI> = ({
   const py = sizes[size ? size : "medium"].py
   return (
     <button
-      disabled={disabled}
+      disabled={isDisabled}
       type={buttonType || "button"}
       {...props}
       style={{
         background: bg,
         border,
         ...style,
-        opacity: disabled ? 0.5 : "",
+        opacity: isDisabled ? 0.5 : "",
       }}
       className={`transition hover:ease-in duration-300 rounded-[80px] ${width} ${py} ${px} ${
-        disabled ? "" : "hover-btn"
+        isDisabled ? "cursor-not-allowed" : "hover-btn"
       } ${className ? className : ""}`}
     >
-      <span
-        className={classNames(
-          "flex items-center gap-[8px] justify-center",
-          prefixClass
-        )}
-      >
-        {prefixicon}
-        <Text />
-        {sufficIcon}
-      </span>
+      {isLoading ? (
+        <div className="flex items-start gap-2 justify-center">
+          <ClipLoader size={20} color="white" />
+          <Text />
+        </div>
+      ) : (
+        <>
+          <span
+            className={classNames(
+              "flex items-center gap-[8px] justify-center",
+              prefixClass
+            )}
+          >
+            {prefixicon}
+            <Text />
+            {sufficIcon}
+          </span>
+        </>
+      )}
     </button>
   )
 }

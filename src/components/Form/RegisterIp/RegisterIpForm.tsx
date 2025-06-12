@@ -5,17 +5,16 @@ import { Button, Input, Typography } from "@/components"
 import { FileUploadInput } from "@/components/Input"
 import { AddCreators } from "./Creators"
 import { IpCreator, IpMetadata } from "@story-protocol/core-sdk"
-import { toast } from "react-toastify"
 import { useUploadFile } from "@/hooks/useUploadFile"
 import { env_vars } from "@/constants/env_vars"
-import { useCreateSpgNFTCollection } from "@/hooks/useCreateSpgNFTCollection"
 import { getHashFromUrl } from "@/libs/hashContent"
 import { MediaFormat } from "@/types/media"
 import { useAccount } from "wagmi"
 import { useUploadJSONToIPFS } from "@/hooks/useUploadToIPFS"
 import { useStoryClient } from "@/hooks/useStoryClient"
 import { createHash } from "crypto"
-import { spg_contract } from "@/constants/contract_addresses"
+import { useMintAndRegisterIp } from "@/hooks/useStoryAPIs"
+import { useConnectModal } from "@tomo-inc/tomo-evm-kit"
 
 const { Caption2Regular, Subtitle2Medium, Subtitle3Regular } = Typography
 const inputStyle =
@@ -51,46 +50,52 @@ export const RegisterIpForm = () => {
   const { mutateAsync: uploadJSON, isPending: isUploadingJSON } =
     useUploadJSONToIPFS()
   const { storyClient } = useStoryClient()
+  const { mutateAsync: mintAndRegisterIp, isPending: isRegistering } =
+    useMintAndRegisterIp()
+  const { openConnectModal } = useConnectModal()
+  const { isConnected } = useAccount()
 
   const handleFormSubmission = async () => {
-    const client = await storyClient()
-    const song = await uploadFile({ file: songFile as File })
-    const song_url = `https://${env_vars.pinata_gateway}/files/${song.cid}`
-    const thumbnail = await uploadFile({ file: thumbnailFile as File })
-    const thumbnail_url = `https://${env_vars.pinata_gateway}/files/${thumbnail.cid}`
-    const ipMetaDataJSON = {
-      ...ipMetaData,
-      image: thumbnail_url,
-      imageHash: await getHashFromUrl(thumbnail_url),
-      mediaUrl: song_url,
-      mediaHash: await getHashFromUrl(song_url),
-      mediaType: MediaFormat.MP3,
-      creators,
-    }
-    const nftMetadata = {
-      name: `${ipMetaDataJSON.title} NFT`,
-      description: `This is an NFT representing owernship of ${ipMetaDataJSON.title}.`,
-      image: thumbnail_url,
-    }
-    const ipIpfsHash = await uploadJSON(ipMetaDataJSON)
-    const ipHash = createHash("sha256")
-      .update(JSON.stringify(ipMetaDataJSON))
-      .digest("hex")
+    if (isConnected) {
+      const client = await storyClient()
+      const song = await uploadFile({ file: songFile as File })
+      const song_url = `https://${env_vars.pinata_gateway}/files/${song.cid}`
+      const thumbnail = await uploadFile({ file: thumbnailFile as File })
+      const thumbnail_url = `https://${env_vars.pinata_gateway}/files/${thumbnail.cid}`
+      const ipMetaDataJSON = {
+        ...ipMetaData,
+        image: thumbnail_url,
+        imageHash: await getHashFromUrl(thumbnail_url),
+        mediaUrl: song_url,
+        mediaHash: await getHashFromUrl(song_url),
+        mediaType: MediaFormat.MP3,
+        creators,
+      }
+      const nftMetadata = {
+        name: `${ipMetaDataJSON.title} NFT`,
+        description: `This is an NFT representing owernship of ${ipMetaDataJSON.title}.`,
+        image: thumbnail_url,
+      }
+      const ipIpfsHash = await uploadJSON(ipMetaDataJSON)
+      const ipHash = createHash("sha256")
+        .update(JSON.stringify(ipMetaDataJSON))
+        .digest("hex")
 
-    const nftIpfsHash = await uploadJSON(nftMetadata)
-    const nftHash = createHash("sha256")
-      .update(JSON.stringify(nftMetadata))
-      .digest("hex")
-    const response = await client.ipAsset.mintAndRegisterIp({
-      spgNftContract: spg_contract.address,
-      ipMetadata: {
-        ipMetadataURI: `https://ipfs.io/ipfs/${ipIpfsHash}`,
-        ipMetadataHash: `0x${ipHash}`,
-        nftMetadataURI: `https://ipfs.io/ipfs/${nftIpfsHash}`,
-        nftMetadataHash: `0x${nftHash}`,
-      },
-    })
-    console.log(response)
+      const nftIpfsHash = await uploadJSON(nftMetadata)
+      const nftHash = createHash("sha256")
+        .update(JSON.stringify(nftMetadata))
+        .digest("hex")
+      await mintAndRegisterIp({
+        ipMetadata: {
+          ipMetadataURI: `https://ipfs.io/ipfs/${ipIpfsHash}`,
+          ipMetadataHash: `0x${ipHash}`,
+          nftMetadataURI: `https://ipfs.io/ipfs/${nftIpfsHash}`,
+          nftMetadataHash: `0x${nftHash}`,
+        },
+      })
+    } else {
+      openConnectModal && openConnectModal()
+    }
   }
   return (
     <div>
@@ -141,7 +146,7 @@ export const RegisterIpForm = () => {
               </label>
               <FileUploadInput
                 onFileSelect={(file) => setThumbnailFile(file)}
-                accept=".jpg, .png, .jpeg"
+                accept=".jpg, .png, .jpeg, .webp"
                 id="thumbnail"
               />
             </div>
@@ -193,13 +198,11 @@ export const RegisterIpForm = () => {
               variant="primary"
               sufficIcon={<ArrowRightIcon />}
               onClick={handleFormSubmission}
-              disabled={isUploadingFile || isUploadingJSON}
+              isLoading={isUploadingFile || isUploadingJSON || isRegistering}
             >
-              {isUploadingFile || isUploadingJSON ? (
-                "Registering..."
-              ) : (
-                <span>Register IP</span>
-              )}
+              {isUploadingFile || isUploadingJSON
+                ? "Uploading assets"
+                : "Register IP"}
             </Button>
           </div>
         </form>

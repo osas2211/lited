@@ -46,7 +46,7 @@ export default function RootLayout({
             <ThemeProvider>{children}</ThemeProvider>
           </SmoothScroller>
         </TomoProvider>
-        <ToastContainer theme="dark" />
+        <ToastContainer theme="dark" position="bottom-right" />
       </body>
     </html>
   )
