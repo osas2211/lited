@@ -6,6 +6,7 @@ import { greyScale } from "@/utils/colors"
 import { ThemeProvider } from "./ThemeProvider"
 import { SmoothScroller } from "@/components/Providers/SmoothScroller"
 import { TomoProvider } from "@/components/Providers/TomoProvider"
+import { ToastContainer } from "react-toastify"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -45,6 +46,7 @@ export default function RootLayout({
             <ThemeProvider>{children}</ThemeProvider>
           </SmoothScroller>
         </TomoProvider>
+        <ToastContainer theme="dark" />
       </body>
     </html>
   )

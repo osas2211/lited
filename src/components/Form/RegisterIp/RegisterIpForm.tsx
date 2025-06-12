@@ -1,18 +1,97 @@
 "use client"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { ArrowRightIcon } from "@/components/Icons"
 import { Button, Input, Typography } from "@/components"
 import { FileUploadInput } from "@/components/Input"
 import { AddCreators } from "./Creators"
-import { IpCreator } from "@story-protocol/core-sdk"
+import { IpCreator, IpMetadata } from "@story-protocol/core-sdk"
+import { toast } from "react-toastify"
+import { useUploadFile } from "@/hooks/useUploadFile"
+import { env_vars } from "@/constants/env_vars"
+import { useCreateSpgNFTCollection } from "@/hooks/useCreateSpgNFTCollection"
+import { getHashFromUrl } from "@/libs/hashContent"
+import { MediaFormat } from "@/types/media"
+import { useAccount } from "wagmi"
+import { useUploadJSONToIPFS } from "@/hooks/useUploadToIPFS"
+import { useStoryClient } from "@/hooks/useStoryClient"
+import { createHash } from "crypto"
+import { spg_contract } from "@/constants/contract_addresses"
 
 const { Caption2Regular, Subtitle2Medium, Subtitle3Regular } = Typography
 const inputStyle =
   "w-full bg-grey-1 mt-[12px] placeholder:text-grey-500 text-grey-100 active:border-grey-500 hover:border-grey-500 border-[1px] border-grey-700 rounded-[8px]"
+const default_data = {
+  title: "",
+  description: "",
+  image: "",
+  mediaUrl: "",
+  mediaType: "",
+  creators: [],
+}
 
 export const RegisterIpForm = () => {
+  const walletAccount = useAccount()
   const [creators, setCreators] = useState<IpCreator[]>([])
+  useEffect(() => {
+    if (walletAccount.address) {
+      setCreators([
+        {
+          name: "LiTED Tester",
+          address: walletAccount.address!!,
+          contributionPercent: 100,
+        },
+      ])
+    }
+  }, [])
+  const [ipMetaData, setIpMetaData] = useState<IpMetadata>(default_data)
+  const [songFile, setSongFile] = useState<File>()
+  const [thumbnailFile, setThumbnailFile] = useState<File>()
+  const { mutateAsync: uploadFile, isPending: isUploadingFile } =
+    useUploadFile()
+  const { mutateAsync: uploadJSON, isPending: isUploadingJSON } =
+    useUploadJSONToIPFS()
+  const { storyClient } = useStoryClient()
 
+  const handleFormSubmission = async () => {
+    const client = await storyClient()
+    const song = await uploadFile({ file: songFile as File })
+    const song_url = `https://${env_vars.pinata_gateway}/files/${song.cid}`
+    const thumbnail = await uploadFile({ file: thumbnailFile as File })
+    const thumbnail_url = `https://${env_vars.pinata_gateway}/files/${thumbnail.cid}`
+    const ipMetaDataJSON = {
+      ...ipMetaData,
+      image: thumbnail_url,
+      imageHash: await getHashFromUrl(thumbnail_url),
+      mediaUrl: song_url,
+      mediaHash: await getHashFromUrl(song_url),
+      mediaType: MediaFormat.MP3,
+      creators,
+    }
+    const nftMetadata = {
+      name: `${ipMetaDataJSON.title} NFT`,
+      description: `This is an NFT representing owernship of ${ipMetaDataJSON.title}.`,
+      image: thumbnail_url,
+    }
+    const ipIpfsHash = await uploadJSON(ipMetaDataJSON)
+    const ipHash = createHash("sha256")
+      .update(JSON.stringify(ipMetaDataJSON))
+      .digest("hex")
+
+    const nftIpfsHash = await uploadJSON(nftMetadata)
+    const nftHash = createHash("sha256")
+      .update(JSON.stringify(nftMetadata))
+      .digest("hex")
+    const response = await client.ipAsset.mintAndRegisterIp({
+      spgNftContract: spg_contract.address,
+      ipMetadata: {
+        ipMetadataURI: `https://ipfs.io/ipfs/${ipIpfsHash}`,
+        ipMetadataHash: `0x${ipHash}`,
+        nftMetadataURI: `https://ipfs.io/ipfs/${nftIpfsHash}`,
+        nftMetadataHash: `0x${nftHash}`,
+      },
+    })
+    console.log(response)
+  }
   return (
     <div>
       <div className="my-[30px] md:my-[24px] w-full mx-auto">
@@ -25,6 +104,9 @@ export const RegisterIpForm = () => {
               id="title"
               className={inputStyle}
               placeholder="Enter your IP name e.g single, ep or album name"
+              onChange={(e) =>
+                setIpMetaData((prev) => ({ ...prev, title: e.target.value }))
+              }
             />
           </div>
           <div>
@@ -34,10 +116,16 @@ export const RegisterIpForm = () => {
             <textarea
               id="description"
               className={`${inputStyle} min-h-[120px] p-[16px] border-[1px] border-grey-700 rounded-[8px]
-      focus:outline-none focus:border-primary-default hover:border-[#9813B9]
-      placeholder:text-grey-300 placeholder:text-[16px] font-[400] text-[16px]
-      disabled:border-grey-400 disabled:placeholder:text-grey-400 disabled:bg-grey-900 bg-grey-700 text-grey-0`}
+              focus:outline-none focus:border-primary-default hover:border-[#9813B9]
+              placeholder:text-grey-300 placeholder:text-[16px] font-[400] text-[16px]
+              disabled:border-grey-400 disabled:placeholder:text-grey-400 disabled:bg-grey-900 bg-grey-700 text-grey-0`}
               placeholder="Enter a detailed description of your Ip or Song"
+              onChange={(e) =>
+                setIpMetaData((prev) => ({
+                  ...prev,
+                  description: e.target.value,
+                }))
+              }
             />
           </div>
           <div className="grid md:grid-cols-2 gap-6">
@@ -52,7 +140,7 @@ export const RegisterIpForm = () => {
                 </Caption2Regular> */}
               </label>
               <FileUploadInput
-                onFileSelect={(file) => {}}
+                onFileSelect={(file) => setThumbnailFile(file)}
                 accept=".jpg, .png, .jpeg"
                 id="thumbnail"
               />
@@ -66,7 +154,7 @@ export const RegisterIpForm = () => {
                 </Caption2Regular>
               </label>
               <FileUploadInput
-                onFileSelect={(file) => {}}
+                onFileSelect={(file) => setSongFile(file)}
                 accept=".mp3"
                 id="song"
               />
@@ -101,8 +189,17 @@ export const RegisterIpForm = () => {
           </div>
 
           <div className="flex justify-end mt-[48px]">
-            <Button variant="primary" sufficIcon={<ArrowRightIcon />}>
-              <span>Register IP</span>
+            <Button
+              variant="primary"
+              sufficIcon={<ArrowRightIcon />}
+              onClick={handleFormSubmission}
+              disabled={isUploadingFile || isUploadingJSON}
+            >
+              {isUploadingFile || isUploadingJSON ? (
+                "Registering..."
+              ) : (
+                <span>Register IP</span>
+              )}
             </Button>
           </div>
         </form>

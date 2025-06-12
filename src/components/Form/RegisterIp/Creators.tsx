@@ -29,79 +29,40 @@ export const AddCreators: React.FC<AddCreatorProps> = ({
 }) => {
   const handleAddContribution = () => {
     setCreators((prev) => {
-      return [...prev, default_creator]
+      return [...creators, default_creator]
     })
   }
   const handleRemove = (index: number) => {
-    setCreators((prev) => {
-      const filtered = prev.filter((_, creator_index) => {
-        return index !== creator_index
-      })
-      return filtered
+    const filtered_array = creators.filter((_, creator_index) => {
+      return index !== creator_index
     })
+    setCreators(filtered_array)
+  }
+  const updateCreator = (
+    value: string | `0x${string}`,
+    index: number,
+    key: "name" | "role" | "address" | "contributionPercent"
+  ) => {
+    const updatedCreators = creators.map((creator_, index_) => {
+      if (index === index_) {
+        if (key === "contributionPercent") {
+          return { ...creator_, contributionPercent: Number(value) }
+        } else {
+          return { ...creator_, [key]: value as string & `0x${string}` }
+        }
+      }
+      return creator_
+    })
+    setCreators(updatedCreators)
   }
   return (
     <div className="space-y-10">
       {creators.map((creator, index) => {
         return (
-          <div key={index} className="grid md:grid-cols-2 gap-4 mt-4">
-            <div>
-              <label htmlFor={`creator-name-${index}`}>
-                <Subtitle2Medium>Name</Subtitle2Medium>
-              </label>
-              <Input
-                id={`creator-name-${index}`}
-                className={inputStyle}
-                placeholder="Enter collaborator name"
-                defaultValue={creator.name}
-              />
-            </div>
-            <div>
-              <label htmlFor={`creator-address-${index}`}>
-                <Subtitle2Medium>Address</Subtitle2Medium>
-              </label>
-              <Input
-                id={`creator-address-${index}`}
-                className={inputStyle}
-                placeholder="Enter collaborator address"
-                defaultValue={creator.address}
-              />
-            </div>
-            <div>
-              <label htmlFor={`creator-contribution-${index}`}>
-                <Subtitle2Medium>Contribution (%)</Subtitle2Medium>
-              </label>
-              <Input
-                id={`creator-contribution-${index}`}
-                className={inputStyle}
-                placeholder="Enter collaborator contribution"
-                defaultValue={creator.contributionPercent}
-                type="number"
-                max={100}
-                min={0}
-              />
-            </div>
-            <div>
-              <label htmlFor={`creator-role-${index}`}>
-                <Subtitle2Medium>Role</Subtitle2Medium>
-              </label>
-              <Input
-                id={`creator-role-${index}`}
-                className={inputStyle}
-                placeholder="Enter collaborator role"
-                defaultValue={creator.role}
-              />
-            </div>
-            <Button
-              variant="text"
-              size="small"
-              className="w-[100px] hover:!bg-transparent !py-2"
-              prefixicon={<CgClose className="text-primary-hover" />}
-              onClick={() => handleRemove(index)}
-            >
-              Remove
-            </Button>
-          </div>
+          <CreatorInputs
+            key={index}
+            {...{ creator, index, handleRemove, updateCreator }}
+          />
         )
       })}
 
@@ -116,6 +77,89 @@ export const AddCreators: React.FC<AddCreatorProps> = ({
           Add creator
         </Button>
       </div>
+    </div>
+  )
+}
+
+const CreatorInputs = ({
+  creator,
+  updateCreator,
+  index,
+  handleRemove,
+}: {
+  creator: IpCreator
+  updateCreator: (
+    value: string,
+    index: number,
+    key: "name" | "role" | "address" | "contributionPercent"
+  ) => void
+  index: number
+  handleRemove: (index: number) => void
+}) => {
+  return (
+    <div className="grid md:grid-cols-2 gap-4 mt-4">
+      <div>
+        <label htmlFor={`creator-name-${index}`}>
+          <Subtitle2Medium>Name</Subtitle2Medium>
+        </label>
+        <Input
+          id={`creator-name-${index}`}
+          className={inputStyle}
+          placeholder="Enter collaborator name"
+          onChange={(e) => updateCreator(e.target.value, index, "name")}
+          value={creator.name}
+        />
+      </div>
+      <div>
+        <label htmlFor={`creator-address-${index}`}>
+          <Subtitle2Medium>Address</Subtitle2Medium>
+        </label>
+        <Input
+          id={`creator-address-${index}`}
+          className={inputStyle}
+          placeholder="Enter collaborator address"
+          onChange={(e) => updateCreator(e.target.value, index, "address")}
+          value={creator.address}
+        />
+      </div>
+      <div>
+        <label htmlFor={`creator-contribution-${index}`}>
+          <Subtitle2Medium>Contribution (%)</Subtitle2Medium>
+        </label>
+        <Input
+          id={`creator-contribution-${index}`}
+          className={inputStyle}
+          placeholder="Enter collaborator contribution"
+          onChange={(e) =>
+            updateCreator(e.target.value, index, "contributionPercent")
+          }
+          value={creator.contributionPercent}
+          type="number"
+          max={100}
+          min={0}
+        />
+      </div>
+      <div>
+        <label htmlFor={`creator-role-${index}`}>
+          <Subtitle2Medium>Role</Subtitle2Medium>
+        </label>
+        <Input
+          id={`creator-role-${index}`}
+          className={inputStyle}
+          placeholder="Enter collaborator role"
+          value={creator.role}
+          onChange={(e) => updateCreator(e.target.value, index, "role")}
+        />
+      </div>
+      <Button
+        variant="text"
+        size="small"
+        className="w-[100px] hover:!bg-transparent !py-2"
+        prefixicon={<CgClose className="text-primary-hover" />}
+        onClick={() => handleRemove(index)}
+      >
+        Remove
+      </Button>
     </div>
   )
 }
