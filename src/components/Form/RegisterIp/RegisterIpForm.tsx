@@ -2,9 +2,14 @@
 import React, { useEffect, useState } from "react"
 import { ArrowRightIcon } from "@/components/Icons"
 import { Button, Input, Typography } from "@/components"
-import { FileUploadInput } from "@/components/Input"
+import { FileUploadInput, Switch } from "@/components/Input"
 import { AddCreators } from "./Creators"
-import { IpCreator, IpMetadata } from "@story-protocol/core-sdk"
+import {
+  IpCreator,
+  IpMetadata,
+  License,
+  LicenseTerms,
+} from "@story-protocol/core-sdk"
 import { useUploadFile } from "@/hooks/useUploadFile"
 import { env_vars } from "@/constants/env_vars"
 import { getHashFromUrl } from "@/libs/hashContent"
@@ -13,8 +18,13 @@ import { useAccount } from "wagmi"
 import { useUploadJSONToIPFS } from "@/hooks/useUploadToIPFS"
 import { useStoryClient } from "@/hooks/useStoryClient"
 import { createHash } from "crypto"
-import { useMintAndRegisterIp } from "@/hooks/useStoryAPIs"
+import {
+  useMintAndRegisterIp,
+  useMintAndRegisterIpWithLicenseTerms,
+} from "@/hooks/useStoryFuncs"
 import { useConnectModal } from "@tomo-inc/tomo-evm-kit"
+import { LicenseTermsForm } from "./LicenseTermsForm"
+import { Divider } from "@mui/joy"
 
 const { Caption2Regular, Subtitle2Medium, Subtitle3Regular } = Typography
 const inputStyle =
@@ -31,18 +41,16 @@ const default_data = {
 export const RegisterIpForm = () => {
   const walletAccount = useAccount()
   const [creators, setCreators] = useState<IpCreator[]>([])
-  useEffect(() => {
-    if (walletAccount.address) {
-      setCreators([
-        {
-          name: "LiTED Tester",
-          address: walletAccount.address!!,
-          contributionPercent: 100,
-        },
-      ])
-    }
-  }, [])
   const [ipMetaData, setIpMetaData] = useState<IpMetadata>(default_data)
+  const [licenseTerms, setLicenseTerms] = React.useState<Partial<LicenseTerms>>(
+    {
+      commercialUse: true,
+      commercialAttribution: true,
+      commercialRevShare: 50, // Default to 50%
+      commercialRevCeiling: BigInt(0), // No ceiling
+      derivativesAllowed: true,
+    }
+  )
   const [songFile, setSongFile] = useState<File>()
   const [thumbnailFile, setThumbnailFile] = useState<File>()
   const { mutateAsync: uploadFile, isPending: isUploadingFile } =
@@ -52,12 +60,24 @@ export const RegisterIpForm = () => {
   const { storyClient } = useStoryClient()
   const { mutateAsync: mintAndRegisterIp, isPending: isRegistering } =
     useMintAndRegisterIp()
+  const { mutateAsync: registerWithLicenseTerms, isPending: isRegistering2 } =
+    useMintAndRegisterIpWithLicenseTerms()
   const { openConnectModal } = useConnectModal()
   const { isConnected } = useAccount()
+  const [attachLicenseTerms, setAttachLicenseTerms] = useState(false)
 
   const handleFormSubmission = async () => {
     if (isConnected) {
       const client = await storyClient()
+      const creators_ = creators.length
+        ? creators
+        : [
+            client.ipAsset.generateCreatorMetadata({
+              name: "LiTED Tester",
+              address: walletAccount.address!!,
+              contributionPercent: 100,
+            }),
+          ]
       const song = await uploadFile({ file: songFile as File })
       const song_url = `https://${env_vars.pinata_gateway}/files/${song.cid}`
       const thumbnail = await uploadFile({ file: thumbnailFile as File })
@@ -69,7 +89,7 @@ export const RegisterIpForm = () => {
         mediaUrl: song_url,
         mediaHash: await getHashFromUrl(song_url),
         mediaType: MediaFormat.MP3,
-        creators,
+        creators_,
       }
       const nftMetadata = {
         name: `${ipMetaDataJSON.title} NFT`,
@@ -85,14 +105,27 @@ export const RegisterIpForm = () => {
       const nftHash = createHash("sha256")
         .update(JSON.stringify(nftMetadata))
         .digest("hex")
-      await mintAndRegisterIp({
-        ipMetadata: {
-          ipMetadataURI: `https://ipfs.io/ipfs/${ipIpfsHash}`,
-          ipMetadataHash: `0x${ipHash}`,
-          nftMetadataURI: `https://ipfs.io/ipfs/${nftIpfsHash}`,
-          nftMetadataHash: `0x${nftHash}`,
-        },
-      })
+      if (attachLicenseTerms) {
+        console.log("License Terms", licenseTerms)
+        await registerWithLicenseTerms({
+          ipMetadata: {
+            ipMetadataURI: `https://ipfs.io/ipfs/${ipIpfsHash}`,
+            ipMetadataHash: `0x${ipHash}`,
+            nftMetadataURI: `https://ipfs.io/ipfs/${nftIpfsHash}`,
+            nftMetadataHash: `0x${nftHash}`,
+          },
+          licenseTerms: { ...licenseTerms },
+        })
+      } else {
+        await mintAndRegisterIp({
+          ipMetadata: {
+            ipMetadataURI: `https://ipfs.io/ipfs/${ipIpfsHash}`,
+            ipMetadataHash: `0x${ipHash}`,
+            nftMetadataURI: `https://ipfs.io/ipfs/${nftIpfsHash}`,
+            nftMetadataHash: `0x${nftHash}`,
+          },
+        })
+      }
     } else {
       openConnectModal && openConnectModal()
     }
@@ -171,26 +204,19 @@ export const RegisterIpForm = () => {
             </label>
             <AddCreators {...{ creators, setCreators }} />
           </div>
-          <div>
-            <label htmlFor="Tags">
-              <Subtitle2Medium>Tags</Subtitle2Medium>
-            </label>
-            <Input
-              id="Tags"
-              className={inputStyle}
-              placeholder="Enter tags to help find your song better"
-            />
-          </div>
-
+          <Divider />
           <div className="flex items-center justify-between">
-            <Subtitle2Medium className="text-grey-300">
-              Is this song an explicit & sensitive content?
+            <Subtitle2Medium className="text-grey-100">
+              Do you want to attach license terms to this IP?
             </Subtitle2Medium>
 
-            <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" value="" className="sr-only peer" />
-              <div className="w-11 h-6 bg-grey-800 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-default dark:peer-focus:ring-primary-default rounded-full peer dark:bg-grey-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-grey-100 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-default"></div>
-            </label>
+            <Switch onChange={(checked) => setAttachLicenseTerms(checked)} />
+          </div>
+
+          <div>
+            {attachLicenseTerms && (
+              <LicenseTermsForm {...{ licenseTerms, setLicenseTerms }} />
+            )}
           </div>
 
           <div className="flex justify-end mt-[48px]">
@@ -198,7 +224,12 @@ export const RegisterIpForm = () => {
               variant="primary"
               sufficIcon={<ArrowRightIcon />}
               onClick={handleFormSubmission}
-              isLoading={isUploadingFile || isUploadingJSON || isRegistering}
+              isLoading={
+                isUploadingFile ||
+                isUploadingJSON ||
+                isRegistering ||
+                isRegistering2
+              }
             >
               {isUploadingFile || isUploadingJSON
                 ? "Uploading assets"

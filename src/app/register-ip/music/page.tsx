@@ -1,3 +1,4 @@
+"use client"
 import { Footer, Header, Tab, TabAlt, Typography } from "@/components"
 import { in_app_nav_items } from "@/constants/nav-urls"
 import React from "react"
@@ -5,6 +6,11 @@ import { GoBack } from "@/components/utilities"
 import { RegisterIpForm } from "@/components/Form"
 
 const { H6, Subtitle2Medium, Subtitle3Regular } = Typography
+
+const formItems = [
+  { heading: "Standalone", element: <RegisterIpForm /> },
+  { heading: "Remix", element: <></> },
+]
 
 const RegisterIPPage = () => {
   return (
@@ -15,11 +21,10 @@ const RegisterIPPage = () => {
         <div>
           <H6>Tell us about your IP</H6>
           <Subtitle3Regular className="mt-[6px] text-grey-100">
-            Kindly fill in your collection details below with the correct
-            information.
+            Kindly fill in your IP details below with the correct information.
           </Subtitle3Regular>
         </div>
-        <RegisterIpForm />
+        <TabAlt items={formItems} />
       </div>
       <Footer />
     </div>
