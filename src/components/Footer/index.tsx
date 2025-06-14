@@ -34,7 +34,7 @@ export const Footer: React.FC<FooterI> = ({ ...props }) => {
 
           <div className="flex gap-[80px] md:mt-[0px] mt-[40px]">
             <div>
-              <Subtitle2Bold className="mb-[12px]">Company</Subtitle2Bold>
+              <Subtitle2Bold className="mb-[12px]">About</Subtitle2Bold>
               <ul className="flex flex-col gap-[8px]">
                 <li>
                   <Link href={""}>
