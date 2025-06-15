@@ -1,13 +1,19 @@
 "use client"
 import React, { useState } from "react"
 import { ArrowDownIcon } from "@/components/Icons"
-import { Grid, Button, Cards, Typography } from "@/components"
+import {
+  Grid,
+  Button,
+  Cards,
+  Typography,
+  NFTSkeletonLoader,
+} from "@/components"
 import { MintModal } from "../Modal/MintNFT"
 import { nfts } from "./nftsDummyData"
 import { GridFilter } from "./GridFilter"
-import { useGetNFTInstances } from "@/hooks/useStoryAPI"
+import { useGetIpAssets, useGetNFTInstances } from "@/hooks/useStoryAPI"
 import { spg_contract } from "@/constants/contract_addresses"
-import { NFTInstanceI } from "@/types/story.api"
+import { IpAssetI, NFTInstanceI } from "@/types/story.api"
 
 interface MarketGridI {
   showSearch?: boolean
@@ -19,11 +25,15 @@ export const MarketGrid = () => {
   const { NFTCard } = Cards
   const [open, setOpen] = useState(false)
   const [grid, setGrid] = useState(4)
-  const { data, isLoading } = useGetNFTInstances({
-    tokenContractId: spg_contract.address,
+  // const { data, isLoading } = useGetNFTInstances({
+  //   tokenContractId: spg_contract.address,
+  // })
+
+  const { data, isLoading } = useGetIpAssets({
+    tokenContractIds: [spg_contract.address],
   })
 
-  const [nftData, setNftData] = useState<NFTInstanceI>()
+  const [nftData, setNftData] = useState<IpAssetI>()
 
   console.log("NFT Instances Data", data)
   return (
@@ -33,14 +43,16 @@ export const MarketGrid = () => {
         <GridFilter {...{ setGrid, grid }} />
       </div>
 
+      {isLoading && <NFTSkeletonLoader />}
+
       <Grid nItems={grid} className="mb-[40px]">
-        {data?.items.map((nft, index) => (
+        {data?.data.map((nft, index) => (
           <>
             <NFTCard
               {...nft}
               size={grid === 4 ? "small" : "large"}
               key={index}
-              ButtonText={"Mint"}
+              ButtonText={"View"}
               onButtonClick={() => {
                 setOpen(true)
                 setNftData(nft)
@@ -51,9 +63,9 @@ export const MarketGrid = () => {
       </Grid>
 
       <MintModal {...{ open, setOpen, nft: nftData!! }} />
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <Button sufficIcon={<ArrowDownIcon />}>show more</Button>
-      </div>
+      </div> */}
     </div>
   )
 }

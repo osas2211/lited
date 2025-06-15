@@ -3,15 +3,21 @@ import { ArrowLinearLeftIcon } from "../../Icons"
 import { Button, Container, Typography } from "@/components"
 import { NFTCard } from "@/components/Card/NFTCard"
 import Image from "next/image"
-import { NFTInstanceI } from "@/types/story.api"
+import { IpAssetI } from "@/types/story.api"
+import { usePayIPAsset } from "@/hooks/useStoryFuncs"
 
 interface PreviewI {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  nft: NFTInstanceI
+  nft: IpAssetI
 }
 
 export const Preview: React.FC<PreviewI> = ({ setOpen, nft }) => {
   const { Button2 } = Typography
+  const { mutateAsync: payIPA, isPending: isPaying } = usePayIPAsset()
+  const handlePayIPA = async () => {
+    // console.log("Paying IPA for NFT:", nft.ipId)
+    await payIPA({ receiverIpId: nft.ipId })
+  }
 
   const [choice, setChoice] = useState<"nft" | "image">("nft")
   return (
@@ -58,16 +64,20 @@ export const Preview: React.FC<PreviewI> = ({ setOpen, nft }) => {
       </div>
       <Container className="md:py-[20px]">
         {choice === "nft" ? (
-          <NFTCard {...nft} size="large" ButtonText={"Buy"} />
+          <NFTCard
+            {...nft}
+            size="large"
+            ButtonText={"Pay IPA"}
+            buttonLoading={isPaying}
+            onButtonClick={handlePayIPA}
+          />
         ) : (
           <div className="relative w-full h-full">
             <div className={`relative w-full h-[450px]`}>
-              <Image
-                src={nft.image_url}
+              <img
+                src={nft?.nftMetadata?.imageUrl || ""}
                 alt={"name"}
-                fill={true}
-                quality={100}
-                className="rounded-[20px]"
+                className="rounded-[20px] w-full h-full"
                 style={{ objectFit: "cover" }}
               />
             </div>

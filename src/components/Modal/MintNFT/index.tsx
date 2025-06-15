@@ -4,12 +4,12 @@ import { Button, Typography } from "../.."
 import Image from "next/image"
 import { Preview } from "./Preview"
 import { Details } from "./Details"
-import { NFTInstanceI } from "@/types/story.api"
+import { IpAssetI } from "@/types/story.api"
 
 interface MintModalI {
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  nft: NFTInstanceI
+  nft: IpAssetI
 }
 
 export const MintModal: React.FC<MintModalI> = ({ open, setOpen, nft }) => {

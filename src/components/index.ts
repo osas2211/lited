@@ -16,6 +16,7 @@ import { NftGrid } from "./Grid/NftGrid"
 import { NftsTab } from "./Tab/NFTsTab"
 import { SideScroller } from "./SideScroller"
 import { TabAlt } from "./Tab/TabAlt"
+import { NFTSkeletonLoader } from "./Skeleton"
 export {
   Typography,
   Button,
@@ -35,4 +36,5 @@ export {
   NftsTab,
   SideScroller,
   TabAlt,
+  NFTSkeletonLoader,
 }

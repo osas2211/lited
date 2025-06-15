@@ -3,18 +3,20 @@ import React, { useState } from "react"
 import Grid from "."
 import { Cards } from ".."
 import { MintModal } from "../Modal/MintNFT"
-import { NFTInstanceI } from "@/types/story.api"
+import { IpAssetI, NFTInstanceI } from "@/types/story.api"
+import { useGetNFTInstance } from "@/hooks/useStoryAPI"
+import { spg_contract } from "@/constants/contract_addresses"
 
 interface NftGridI {
   grid?: number
   setGrid?: React.Dispatch<React.SetStateAction<number>>
-  nfts: NFTInstanceI[]
+  nfts: IpAssetI[]
 }
 
 export const NftGrid: React.FC<NftGridI> = ({ grid, nfts }) => {
   const { NFTCard } = Cards
   const [open, setOpen] = useState(false)
-  const [nftData, setNftData] = useState<NFTInstanceI>()
+  const [nftData, setNftData] = useState<IpAssetI>()
 
   return (
     <>
@@ -25,10 +27,10 @@ export const NftGrid: React.FC<NftGridI> = ({ grid, nfts }) => {
               {...nft}
               size={grid === 3 ? "large" : "small"}
               key={index}
-              ButtonText={"Mint"}
+              ButtonText={"View"}
               onButtonClick={() => {
                 setOpen(true)
-                setNftData(nft as NFTInstanceI)
+                setNftData(nft)
               }}
             />
           </>

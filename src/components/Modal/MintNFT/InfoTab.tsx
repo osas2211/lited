@@ -1,12 +1,18 @@
 import React from "react"
 import { Typography, Input, Avatar } from "@/components"
 import { CopyIcon, InfoIcon } from "@/components/Icons"
-import { NFTInstanceI } from "@/types/story.api"
+import { IpAssetI } from "@/types/story.api"
 import { truncateString } from "@/utils/truncateString"
+import { useGetNFTInstance } from "@/hooks/useStoryAPI"
+import { spg_contract } from "@/constants/contract_addresses"
 
-export const InfoTab = ({ nft }: { nft: NFTInstanceI }) => {
+export const InfoTab = ({ nft }: { nft: IpAssetI }) => {
   const { Subtitle3Medium, Caption1Regular, Caption2Regular, Caption1Bold } =
     Typography
+  const { data: nftInstance, isLoading } = useGetNFTInstance({
+    id: nft?.nftMetadata?.tokenId || "",
+    tokenContractId: spg_contract.address || "",
+  })
   return (
     <div className="flex flex-col gap-[16px]">
       <div className="">
@@ -15,7 +21,7 @@ export const InfoTab = ({ nft }: { nft: NFTInstanceI }) => {
         </Subtitle3Medium>
         <div className="inline-flex gap-[12px] rounded-[8px] px-[16px] py-[12px] bg-grey-800 w-full">
           <Caption2Regular className="capitalize">
-            {nft?.metadata?.description}
+            {nftInstance?.metadata?.description || "N/A"}
           </Caption2Regular>
         </div>
       </div>
@@ -27,7 +33,7 @@ export const InfoTab = ({ nft }: { nft: NFTInstanceI }) => {
         <div className="inline-flex gap-[12px] rounded-[8px] px-[16px] py-[12px] bg-grey-800 w-full">
           <Avatar src="/story.png" size="small" />
           <Caption1Regular className="capitalize">
-            {truncateString(nft?.owner?.hash || "")}
+            {truncateString(nftInstance?.owner?.hash || "", 10)}
           </Caption1Regular>
         </div>
       </div>
@@ -56,24 +62,24 @@ export const InfoTab = ({ nft }: { nft: NFTInstanceI }) => {
           <Subtitle3Medium className="flex gap-1 items-center mb-[8px]">
             Attributes <InfoIcon />
           </Subtitle3Medium>
-          <div className="rounded-[8px] px-[16px] py-[12px] bg-grey-800 w-full text-center">
+          {/* <div className="rounded-[8px] px-[16px] py-[12px] bg-grey-800 w-full text-center">
             <Caption1Regular className="capitalize text-grey-200">
               Classic
             </Caption1Regular>
             <Caption1Bold>60% rarity</Caption1Bold>
-          </div>
+          </div> */}
         </div>
-        <div className="w-[50%]">
+        {/* <div className="w-[50%]">
           <div className="rounded-[8px] px-[16px] py-[12px] bg-grey-800 w-full text-center">
             <Caption1Regular className="capitalize text-grey-200">
               Rarity
             </Caption1Regular>
             <Caption1Bold>40% rarity</Caption1Bold>
           </div>
-        </div>
+        </div> */}
       </div>
 
-      <div className="">
+      {/* <div className="">
         <Subtitle3Medium className="flex gap-1 items-center mb-[8px]">
           Token <InfoIcon />
         </Subtitle3Medium>
@@ -99,7 +105,7 @@ export const InfoTab = ({ nft }: { nft: NFTInstanceI }) => {
             </Caption1Regular>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

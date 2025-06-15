@@ -17,35 +17,35 @@ export interface GetIpAssetsRequestI {
 }
 
 export interface GetIpAssetsResponseI {
-  data: [
-    {
-      ancestorCount: number
-      blockNumber: string
-      blockTimestamp: string
-      childrenCount: number
-      descendantCount: number
-      id: string
-      ipId: string
-      isGroup: boolean
-      latestArbitrationPolicy: string
-      nftMetadata: {
-        chainId: string
-        imageUrl: string
-        name: string
-        tokenContract: string
-        tokenId: string
-        tokenUri: string
-      }
-      parentCount: number
-      rootCount: number
-      rootIpIds: string[]
-      transactionHash: string
-    }
-  ]
+  data: IpAssetI[]
   hasNextPage: boolean
   hasPreviousPage: boolean
   next: string
   prev: string
+}
+
+export interface IpAssetI {
+  ancestorCount: number
+  blockNumber: string
+  blockTimestamp: string
+  childrenCount: number
+  descendantCount: number
+  id: string
+  ipId: string
+  isGroup: boolean
+  latestArbitrationPolicy: string
+  nftMetadata: {
+    chainId: string
+    imageUrl: string
+    name: string
+    tokenContract: string
+    tokenId: string
+    tokenUri: string
+  }
+  parentCount: number
+  rootCount: number
+  rootIpIds: string[]
+  transactionHash: string
 }
 
 export interface GetNFTInstancesRequestI {

@@ -5,7 +5,7 @@ import { Empty, NftGrid } from ".."
 import { nfts } from "../Grid/nftsDummyData"
 import { GridFilter } from "../Grid/GridFilter"
 import { ElementIcon, ElementPlusIcon, Heart2Icon, PenAddIcon } from "../Icons"
-import { useGetNFTInstances } from "@/hooks/useStoryAPI"
+import { useGetIpAssets, useGetNFTInstances } from "@/hooks/useStoryAPI"
 import { spg_contract } from "@/constants/contract_addresses"
 import { useAccount } from "wagmi"
 
@@ -14,9 +14,9 @@ export const NftsTab = () => {
   const defaultPanel = 0
   const [activePanel, setActivePanel] = useState<string | number>(defaultPanel)
   const account = useAccount()
-  const { data, isLoading } = useGetNFTInstances({
-    tokenContractId: spg_contract.address,
-    holder_address_hash: account?.address,
+  const { data, isLoading } = useGetIpAssets({
+    tokenContractIds: [spg_contract.address],
+    // holder_address_hash: account?.address,
   })
 
   const items = [
@@ -25,10 +25,10 @@ export const NftsTab = () => {
         <Tabheader
           icon={<PenAddIcon />}
           name="Created"
-          count={data?.items?.length || 0}
+          count={data?.data?.length || 0}
         />
       ),
-      element: <NftGrid nfts={data?.items!!} grid={grid} />,
+      element: <NftGrid nfts={data?.data!!} grid={grid} />,
     },
     {
       heading: (
