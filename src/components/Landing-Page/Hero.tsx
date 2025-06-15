@@ -4,6 +4,7 @@ import { FaArrowRight } from "react-icons/fa"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ButtonAlt } from "../Button/ButtonAlt"
+import Link from "next/link"
 
 export const Hero = () => {
   const scope = useRef<HTMLDivElement>(null)
@@ -201,13 +202,16 @@ export const Hero = () => {
               </div>
             </div>
             <div className="hero-btn">
-              <ButtonAlt
-                prefixicon={<FaArrowRight className="text-white" />}
-                onClick={() => tl.current.restart()}
-                // className="md:!w-auto !w-full"
-              >
-                Get started
-              </ButtonAlt>
+              <Link href="/register-ip">
+                <ButtonAlt
+                  prefixicon={<FaArrowRight className="text-white" />}
+                  // onClick={() => tl.current.restart()}
+
+                  // className="md:!w-auto !w-full"
+                >
+                  Get started
+                </ButtonAlt>
+              </Link>
             </div>
           </div>
         </div>
