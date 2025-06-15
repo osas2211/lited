@@ -153,7 +153,7 @@ export const RegisterIpForm = ({
           },
           licenseTerms: { ...licenseTerms },
         })
-      } else {
+      } else if (!attachLicenseTerms) {
         await mintAndRegisterIp({
           ipMetadata: {
             ipMetadataURI: `https://ipfs.io/ipfs/${ipIpfsHash}`,
