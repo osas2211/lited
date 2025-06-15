@@ -4,13 +4,15 @@ import { Button, Typography } from "../.."
 import Image from "next/image"
 import { Preview } from "./Preview"
 import { Details } from "./Details"
+import { NFTInstanceI } from "@/types/story.api"
 
 interface MintModalI {
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  nft: NFTInstanceI
 }
 
-export const MintModal: React.FC<MintModalI> = ({ open, setOpen }) => {
+export const MintModal: React.FC<MintModalI> = ({ open, setOpen, nft }) => {
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       {/* <ModalClose /> */}
@@ -33,8 +35,8 @@ export const MintModal: React.FC<MintModalI> = ({ open, setOpen }) => {
               background: "rgba(255, 255, 255, 0.64)",
             }}
           >
-            <Preview {...{ setOpen }} />
-            <Details />
+            <Preview {...{ setOpen, nft }} />
+            <Details nft={nft} />
           </div>
         </div>
       </ModalDialog>

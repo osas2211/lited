@@ -12,20 +12,7 @@ export default function Market() {
     tokenContractIds: [spg_contract.address],
   })
   console.log("Market data", data, isLoading)
-  if (isLoading) {
-    return (
-      <main>
-        <Header navItems={in_app_nav_items} active="market" />
-        <Container>
-          <H3>Explore Market</H3>
-          <div className="md:px-[0px] pt-[12px] md:pt-[20px] md:pb-[42px] pb-[32px]">
-            <Subtitle1Regular>Loading...</Subtitle1Regular>
-          </div>
-        </Container>
-        <Footer />
-      </main>
-    )
-  }
+
   return (
     <main>
       <Header navItems={in_app_nav_items} active="market" />

@@ -1,16 +1,23 @@
 import React from "react"
 import { Typography, Input, Avatar } from "@/components"
 import { CopyIcon, InfoIcon } from "@/components/Icons"
+import { NFTInstanceI } from "@/types/story.api"
+import { truncateString } from "@/utils/truncateString"
 
-export const InfoTab = () => {
-  const { Subtitle3Medium, Caption1Regular, Caption1Bold } = Typography
+export const InfoTab = ({ nft }: { nft: NFTInstanceI }) => {
+  const { Subtitle3Medium, Caption1Regular, Caption2Regular, Caption1Bold } =
+    Typography
   return (
     <div className="flex flex-col gap-[16px]">
       <div className="">
         <Subtitle3Medium className="flex gap-1 items-center mb-[8px]">
           Description <InfoIcon />
         </Subtitle3Medium>
-        <Input placeholder="Enter your track name" fullwidth />
+        <div className="inline-flex gap-[12px] rounded-[8px] px-[16px] py-[12px] bg-grey-800 w-full">
+          <Caption2Regular className="capitalize">
+            {nft?.metadata?.description}
+          </Caption2Regular>
+        </div>
       </div>
 
       <div className="">
@@ -18,8 +25,10 @@ export const InfoTab = () => {
           Owner <InfoIcon />
         </Subtitle3Medium>
         <div className="inline-flex gap-[12px] rounded-[8px] px-[16px] py-[12px] bg-grey-800 w-full">
-          <Avatar src="/nft.png" size="small" />
-          <Caption1Regular className="capitalize">Jacob mark</Caption1Regular>
+          <Avatar src="/story.png" size="small" />
+          <Caption1Regular className="capitalize">
+            {truncateString(nft?.owner?.hash || "")}
+          </Caption1Regular>
         </div>
       </div>
 
@@ -29,7 +38,7 @@ export const InfoTab = () => {
             Royalty <InfoIcon />
           </Subtitle3Medium>
           <div className="rounded-[8px] px-[16px] py-[12px] bg-grey-800 w-full">
-            <Caption1Regular className="capitalize">10%</Caption1Regular>
+            <Caption2Regular className="capitalize">10%</Caption2Regular>
           </div>
         </div>
 

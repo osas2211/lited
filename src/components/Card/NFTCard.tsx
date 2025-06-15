@@ -3,14 +3,12 @@ import Image from "next/image"
 import { Button, Typography } from ".."
 import { Avatar } from ".."
 import { ArrowUpIcon, Heart2Icon, HeartIcon } from "../Icons"
+import { NFTInstanceI } from "@/types/story.api"
+import { truncateString } from "@/utils/truncateString"
 
-interface NFTCardI extends React.HTMLAttributes<HTMLDivElement> {
-  imageSrc: string
-  name: string
-  artistAvatar: string
-  artistName: string
-  amount: number
-  genre: string
+interface NFTCardI
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "id" | "value">,
+    NFTInstanceI {
   inFavourites?: boolean
   size: "large" | "small"
   ButtonText: React.ReactNode
@@ -26,7 +24,7 @@ export const NFTCard: FC<NFTCardI> = ({
   onButtonClick,
   ...props
 }) => {
-  const { imageSrc, name, amount, genre, artistAvatar, artistName } = props
+  const { image_url, metadata, token, owner } = props
   const { Subtitle2Medium, Caption2Bold, Label2Medium, Subtitle3Medium } =
     Typography
   return (
@@ -37,8 +35,8 @@ export const NFTCard: FC<NFTCardI> = ({
         }`}
       >
         <Image
-          src={imageSrc}
-          alt={name}
+          src={image_url}
+          alt={metadata?.name || "NFT Image"}
           fill={true}
           quality={100}
           className="rounded-t-[20px]"
@@ -47,18 +45,20 @@ export const NFTCard: FC<NFTCardI> = ({
       </div>
 
       <div className="backdrop-blur-[20px] p-[12px] md:p-[16px] mt-[-2rem] rounded-[20px] bg-[#0A0A0AA3] card-shadow">
-        <Subtitle2Medium className="mb-[20px]">{name}</Subtitle2Medium>
+        <Subtitle2Medium className="mb-[20px]">
+          {metadata?.name || "NFT Image"}
+        </Subtitle2Medium>
         <div className="flex justify-between items-center mb-[16px]">
           <div className="flex md:gap-[12px] gap-[8px] items-center">
-            <Avatar src={artistAvatar} size="small" />
+            <Avatar src={"/story.png"} size="small" />
             <Caption2Bold className={`${size === "small" ? "text-[9px]" : ""}`}>
-              {artistName}
+              {owner?.name || truncateString(owner?.hash) || "Unknown Owner"}
             </Caption2Bold>
           </div>
 
           <div className="md:px-[8px] md:pt-[4px] md:pb-[6px] pt-[0px] px-[5px] pb-[4px] bg-grey-800 rounded-[4px]">
             <Label2Medium className={`${size === "small" ? "text-[8px]" : ""}`}>
-              {genre}
+              {props?.media_type || "IP"}
             </Label2Medium>
           </div>
         </div>
@@ -76,7 +76,7 @@ export const NFTCard: FC<NFTCardI> = ({
             <Subtitle3Medium
               className={`${size === "small" ? "text-[9px]" : ""}`}
             >
-              {Number(Number(amount).toFixed(2)).toLocaleString()}
+              {Number(Number(props?.value || 0).toFixed(2)).toLocaleString()}
             </Subtitle3Medium>
           </div>
 

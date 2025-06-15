@@ -9,3 +9,11 @@ export const storyApi = axios.create({
   },
   timeout: 10000, // 10 seconds timeout
 })
+
+export const storyScanApi = axios.create({
+  baseURL: "https://aeneid.storyscan.io/api/v2",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  timeout: 10000, // 10 seconds timeout
+})

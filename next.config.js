@@ -14,6 +14,12 @@ module.exports = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "yellow-used-unicorn-119.mypinata.cloud",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   reactStrictMode: true,

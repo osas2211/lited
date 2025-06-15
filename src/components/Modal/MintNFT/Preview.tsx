@@ -3,21 +3,16 @@ import { ArrowLinearLeftIcon } from "../../Icons"
 import { Button, Container, Typography } from "@/components"
 import { NFTCard } from "@/components/Card/NFTCard"
 import Image from "next/image"
+import { NFTInstanceI } from "@/types/story.api"
 
 interface PreviewI {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  nft: NFTInstanceI
 }
 
-export const Preview: React.FC<PreviewI> = ({ setOpen }) => {
+export const Preview: React.FC<PreviewI> = ({ setOpen, nft }) => {
   const { Button2 } = Typography
-  const nft = {
-    imageSrc: "/nft.png",
-    name: "Music NFT",
-    amount: 238.766,
-    genre: "Hip hop",
-    artistAvatar: "/nft3.png",
-    artistName: "Polycarp",
-  }
+
   const [choice, setChoice] = useState<"nft" | "image">("nft")
   return (
     <div className="w-[100%] md:w-[600px] h-full">
@@ -68,7 +63,7 @@ export const Preview: React.FC<PreviewI> = ({ setOpen }) => {
           <div className="relative w-full h-full">
             <div className={`relative w-full h-[450px]`}>
               <Image
-                src={"/nft.png"}
+                src={nft.image_url}
                 alt={"name"}
                 fill={true}
                 quality={100}

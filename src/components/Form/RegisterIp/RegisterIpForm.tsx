@@ -89,7 +89,7 @@ export const RegisterIpForm = () => {
         mediaUrl: song_url,
         mediaHash: await getHashFromUrl(song_url),
         mediaType: MediaFormat.MP3,
-        creators_,
+        creators: creators_,
       }
       const nftMetadata = {
         name: `${ipMetaDataJSON.title} NFT`,

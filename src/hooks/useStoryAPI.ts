@@ -1,11 +1,17 @@
-import { getIpAssets } from "@/services/story.service"
-import { GetIpAssetsRequestI } from "@/types/story.api"
+import { getIpAssets, getNFTInstances } from "@/services/story.service"
+import { GetIpAssetsRequestI, GetNFTInstancesRequestI } from "@/types/story.api"
 import { useQuery } from "@tanstack/react-query"
-import { toast } from "react-toastify"
 
 export const useGetIpAssets = (options: GetIpAssetsRequestI) => {
   return useQuery({
     queryKey: ["getIpAssets", options],
     queryFn: () => getIpAssets(options),
+  })
+}
+
+export const useGetNFTInstances = (options: GetNFTInstancesRequestI) => {
+  return useQuery({
+    queryKey: ["getNFTInstances", options],
+    queryFn: () => getNFTInstances(options),
   })
 }
