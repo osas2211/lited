@@ -28,7 +28,7 @@ export const MetaData = () => {
           subhead="You are following 1000, active portals"
         />
       </div>
-      <PortalDetails />
+      {/* <PortalDetails /> */}
     </div>
   )
 }

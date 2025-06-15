@@ -1,6 +1,9 @@
 import { Address } from "viem"
 
 export const spg_contract = {
-  address: "0xC14faff34F4B1D8f11Fe75194f0FCdfa0fB234cb" as Address,
-  tx_hash: "0xf0d32fc022ca8455551d5b36ad3c4a9bac1d224b155fe750929986b94a265af4",
+  address_old: "0xC14faff34F4B1D8f11Fe75194f0FCdfa0fB234cb" as Address,
+  tx_hash_old:
+    "0xf0d32fc022ca8455551d5b36ad3c4a9bac1d224b155fe750929986b94a265af4",
+  address: "0x468eF6058E20891533222Aed2DB3AfDdd605e7BB" as Address,
+  tx_hash: "0xf2fcf23fb8a9851bfebd1e22d5a5d66f764f6cf6223ffe1aea2dbb21078b4bbc",
 }

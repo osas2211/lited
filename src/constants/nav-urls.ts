@@ -12,8 +12,8 @@ export const in_app_nav_items = [
     name: "portal",
     route: "/portal",
   },
-  {
-    name: "launchpad",
-    route: "/launchpad",
-  },
+  // {
+  //   name: "launchpad",
+  //   route: "/launchpad",
+  // },
 ]

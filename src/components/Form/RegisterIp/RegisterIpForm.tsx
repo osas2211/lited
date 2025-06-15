@@ -25,6 +25,8 @@ import {
 import { useConnectModal } from "@tomo-inc/tomo-evm-kit"
 import { LicenseTermsForm } from "./LicenseTermsForm"
 import { Divider } from "@mui/joy"
+import { useGetIpAssets } from "@/hooks/useStoryAPI"
+import { spg_contract } from "@/constants/contract_addresses"
 
 const { Caption2Regular, Subtitle2Medium, Subtitle3Regular } = Typography
 const inputStyle =
@@ -38,7 +40,7 @@ const default_data = {
   creators: [],
 }
 
-export const RegisterIpForm = () => {
+export const RegisterIpForm = ({ type }: { type: string }) => {
   const walletAccount = useAccount()
   const [creators, setCreators] = useState<IpCreator[]>([])
   const [ipMetaData, setIpMetaData] = useState<IpMetadata>(default_data)
@@ -65,6 +67,9 @@ export const RegisterIpForm = () => {
   const { openConnectModal } = useConnectModal()
   const { isConnected } = useAccount()
   const [attachLicenseTerms, setAttachLicenseTerms] = useState(false)
+  const { refetch } = useGetIpAssets({
+    tokenContractIds: [spg_contract.address],
+  })
 
   const handleFormSubmission = async () => {
     if (isConnected) {
@@ -126,6 +131,7 @@ export const RegisterIpForm = () => {
           },
         })
       }
+      refetch()
     } else {
       openConnectModal && openConnectModal()
     }
