@@ -103,7 +103,10 @@ export function SelectOption() {
               </div>
             </Link>
 
-            <Link href={""} className="block select-grid-item">
+            <Link
+              href={"/register-ip/video"}
+              className="block select-grid-item"
+            >
               <div className="flex items-center text-center gap-2 flex-col">
                 <FaVideo size={28} className="text-primary-default" />
                 <div>
@@ -116,7 +119,10 @@ export function SelectOption() {
             </Link>
           </div>
           <div className="select-grid-row">
-            <Link href={"/register-ip"} className="block select-grid-item">
+            <Link
+              href={"/register-ip/photo"}
+              className="block select-grid-item"
+            >
               <div className="flex items-center text-center gap-2 flex-col">
                 <FaPaintBrush size={28} className="text-primary-default" />
                 <div>
@@ -128,7 +134,10 @@ export function SelectOption() {
                 </div>
               </div>
             </Link>
-            <Link href={"/register-ip"} className="block select-grid-item">
+            <Link
+              href={"/register-ip/photo"}
+              className="block select-grid-item"
+            >
               <div className="flex items-center text-center gap-2 flex-col">
                 <HiPhotograph size={28} className="text-primary-default" />
                 <div>
@@ -139,7 +148,10 @@ export function SelectOption() {
                 </div>
               </div>
             </Link>
-            <Link href={"/register-ip"} className="block select-grid-item">
+            <Link
+              href={"/register-ip/comics"}
+              className="block select-grid-item"
+            >
               <div className="flex items-center text-center gap-2 flex-col">
                 <FaFighterJet size={28} className="text-primary-default" />
                 <div>

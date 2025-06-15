@@ -39,7 +39,7 @@ export const MarketGrid = () => {
   return (
     <div>
       <div className="my-[42px] flex justify-between items-center">
-        <H4>Music NFTs</H4>
+        <H4>All NFTs</H4>
         <GridFilter {...{ setGrid, grid }} />
       </div>
 

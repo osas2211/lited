@@ -11,9 +11,7 @@ export const MusicGenres = () => {
       <MenuButton slots={{ root: Box }}>
         <div className="hidden md:flex gap-[8px] items-center">
           <ElementIcon />
-          <Subtitle2Medium className="text-grey-0">
-            Music Genres
-          </Subtitle2Medium>
+          <Subtitle2Medium className="text-grey-0">Genres</Subtitle2Medium>
           <ArrowDownBold />
         </div>
       </MenuButton>

@@ -8,7 +8,7 @@ import { RegisterIpForm } from "@/components/Form"
 const { H6, Subtitle2Medium, Subtitle3Regular } = Typography
 
 const formItems = [
-  { heading: "Standalone", element: <RegisterIpForm /> },
+  { heading: "Standalone", element: <RegisterIpForm type="music" /> },
   { heading: "Remix", element: <></> },
 ]
 

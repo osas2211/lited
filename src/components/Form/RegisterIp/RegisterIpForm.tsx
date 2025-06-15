@@ -40,7 +40,19 @@ const default_data = {
   creators: [],
 }
 
-export const RegisterIpForm = ({ type }: { type: string }) => {
+export const RegisterIpForm = ({
+  type,
+}: {
+  type: "music" | "photo" | "video" | "comics"
+}) => {
+  const fileInputAcceptByType =
+    type === "music"
+      ? ".mp3"
+      : type === "video"
+      ? ".mp4"
+      : type === "comics"
+      ? ".pdf"
+      : ".jpg, .png, .jpeg, .webp"
   const walletAccount = useAccount()
   const [creators, setCreators] = useState<IpCreator[]>([])
   const [ipMetaData, setIpMetaData] = useState<IpMetadata>(default_data)
@@ -71,18 +83,19 @@ export const RegisterIpForm = ({ type }: { type: string }) => {
     tokenContractIds: [spg_contract.address],
   })
 
-  const handleFormSubmission = async () => {
-    if (isConnected) {
-      const client = await storyClient()
-      const creators_ = creators.length
-        ? creators
-        : [
-            client.ipAsset.generateCreatorMetadata({
-              name: "LiTED Tester",
-              address: walletAccount.address!!,
-              contributionPercent: 100,
-            }),
-          ]
+  const generateJSON = async () => {
+    const client = await storyClient()
+
+    const creators_ = creators.length
+      ? creators
+      : [
+          client.ipAsset.generateCreatorMetadata({
+            name: "LiTED Tester",
+            address: walletAccount.address!!,
+            contributionPercent: 100,
+          }),
+        ]
+    if (type === "music" || type === "video") {
       const song = await uploadFile({ file: songFile as File })
       const song_url = `https://${env_vars.pinata_gateway}/files/${song.cid}`
       const thumbnail = await uploadFile({ file: thumbnailFile as File })
@@ -93,13 +106,32 @@ export const RegisterIpForm = ({ type }: { type: string }) => {
         imageHash: await getHashFromUrl(thumbnail_url),
         mediaUrl: song_url,
         mediaHash: await getHashFromUrl(song_url),
-        mediaType: MediaFormat.MP3,
+        mediaType: type === "music" ? MediaFormat.MP3 : MediaFormat.MP4_VIDEO,
         creators: creators_,
       }
+      return ipMetaDataJSON
+    } else {
+      const thumbnail = await uploadFile({ file: thumbnailFile as File })
+      const thumbnail_url = `https://${env_vars.pinata_gateway}/files/${thumbnail.cid}`
+      const ipMetaDataJSON = {
+        ...ipMetaData,
+        image: thumbnail_url,
+        imageHash: await getHashFromUrl(thumbnail_url),
+        creators: creators_,
+        // mediaType: type === "photo" ? MediaFormat.JPEG : MediaFormat.PNG,
+      }
+      return ipMetaDataJSON
+    }
+  }
+
+  const handleFormSubmission = async () => {
+    if (isConnected) {
+      const client = await storyClient()
+      const ipMetaDataJSON = await generateJSON()
       const nftMetadata = {
         name: `${ipMetaDataJSON.title} NFT`,
         description: `This is an NFT representing owernship of ${ipMetaDataJSON.title}.`,
-        image: thumbnail_url,
+        image: ipMetaDataJSON.image,
       }
       const ipIpfsHash = await uploadJSON(ipMetaDataJSON)
       const ipHash = createHash("sha256")
@@ -190,19 +222,24 @@ export const RegisterIpForm = ({ type }: { type: string }) => {
               />
             </div>
 
-            <div>
-              <label htmlFor="song">
-                <Subtitle2Medium>Song</Subtitle2Medium>
-                <Caption2Regular className="text-grey-300">
-                  Max size is 20MB
-                </Caption2Regular>
-              </label>
-              <FileUploadInput
-                onFileSelect={(file) => setSongFile(file)}
-                accept=".mp3"
-                id="song"
-              />
-            </div>
+            {type === "music" ||
+              (type === "video" && (
+                <div>
+                  <label htmlFor="media">
+                    <Subtitle2Medium>
+                      {type === "video" ? "Video" : "Song"}
+                    </Subtitle2Medium>
+                    <Caption2Regular className="text-grey-300">
+                      Max size is 20MB
+                    </Caption2Regular>
+                  </label>
+                  <FileUploadInput
+                    onFileSelect={(file) => setSongFile(file)}
+                    accept={fileInputAcceptByType}
+                    id="media"
+                  />
+                </div>
+              ))}
           </div>
           <div>
             <label htmlFor="creators">
