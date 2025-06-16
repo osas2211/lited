@@ -222,24 +222,23 @@ export const RegisterIpForm = ({
               />
             </div>
 
-            {type === "music" ||
-              (type === "video" && (
-                <div>
-                  <label htmlFor="media">
-                    <Subtitle2Medium>
-                      {type === "video" ? "Video" : "Song"}
-                    </Subtitle2Medium>
-                    <Caption2Regular className="text-grey-300">
-                      Max size is 20MB
-                    </Caption2Regular>
-                  </label>
-                  <FileUploadInput
-                    onFileSelect={(file) => setSongFile(file)}
-                    accept={fileInputAcceptByType}
-                    id="media"
-                  />
-                </div>
-              ))}
+            {(type === "music" || type === "video") && (
+              <div>
+                <label htmlFor="media">
+                  <Subtitle2Medium>
+                    {type === "video" ? "Video" : "Song"}
+                  </Subtitle2Medium>
+                  <Caption2Regular className="text-grey-300">
+                    Max size is 20MB
+                  </Caption2Regular>
+                </label>
+                <FileUploadInput
+                  onFileSelect={(file) => setSongFile(file)}
+                  accept={fileInputAcceptByType}
+                  id="media"
+                />
+              </div>
+            )}
           </div>
           <div>
             <label htmlFor="creators">
