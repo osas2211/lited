@@ -143,7 +143,7 @@ export const RegisterIpForm = ({
         .update(JSON.stringify(nftMetadata))
         .digest("hex")
       if (attachLicenseTerms) {
-        console.log("License Terms", licenseTerms)
+        // console.log("License Terms", licenseTerms)
         await registerWithLicenseTerms({
           ipMetadata: {
             ipMetadataURI: `https://ipfs.io/ipfs/${ipIpfsHash}`,

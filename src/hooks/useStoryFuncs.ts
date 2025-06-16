@@ -61,11 +61,12 @@ export const useMintAndRegisterIpWithLicenseTerms = () => {
       currency: "0x1514000000000000000000000000000000000000", // $WIP address from https://docs.story.foundation/docs/deployed-smart-contracts
       uri: "",
     }
-    return client.ipAsset.mintAndRegisterIpAssetWithPilTerms({
+    const response = await client.ipAsset.mintAndRegisterIpAssetWithPilTerms({
       spgNftContract: spg_contract.address,
       licenseTermsData: [{ terms: commercialRemixTerms }],
       ipMetadata,
     })
+    return response
   }
 
   return useMutation({
