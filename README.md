@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img src="/assets/logo.svg" width="120" alt="LiTED Logo" />
+</p>
 
-## Getting Started
+<h1 align="center">LiTED: The Intellecture Platform for Artistes</h1>
 
-First, run the development server:
+> 🚀 Redefining how artistes **move**, **scale**, and **express** themselves in a decentralized world.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🧠 Powered by Story Protocol
+
+<img src="/story.png" height="40" alt="Story Protocol Logo" />
+
+LiTED is built on **Story Protocol** — the World's first _Intellecture Blockchain_ — a purpose-built Layer 1 chain for registering, managing, and monetizing creative intelligence. LiTED leverages this to tokenize IP, support derivations, enable tipping, and manage royalties transparently.
+
+---
+
+## 🎨 What is LiTED?
+
+**LiTED** is your creative passport to the decentralized web. Whether you’re a musician, painter, writer, photographer, or memer — LiTED empowers you to:
+
+- 🎫 **Register your IPs** on-chain (music, images, ideas, etc.)
+- 🛒 **Sell & showcase** your art in our dynamic marketplace
+- 🔴 **Go Live** with your fans & monetize direct engagement
+- 🎁 **Earn** through tipping, royalties, and IP reuse (derivatives)
+
+---
+
+## 🔥 Features Breakdown
+
+### 🧾 1. IP Registration + Tokenization
+
+Register your intellectual property across various mediums and tokenize them into NFTs or other programmable digital assets. This ensures:
+
+- ✅ Verifiable ownership
+- ✅ Provable scarcity
+- ✅ Instant market readiness
+
+### 🏪 2. Dynamic IP Marketplace
+
+All tokenized IPs are showcased in a vibrant marketplace where:
+
+- Fans, collectors, and investors can **buy or collaborate**
+- Artists get **paid directly** without intermediaries
+- Ownership and value are transparent on-chain
+
+### 🎤 3. Interactive Live Engagement (Coming Soon)
+
+Artistes will be able to:
+
+- Go live for performances & collaborations
+- Do Q&A, showcase drops, get tips
+- Build deeper bonds with their supporters
+
+---
+
+## 🔐 Powered by Tomo Wallet for Web3 Auth
+
+<img src="/tomo.avif" height="40" alt="Tomo Wallet Logo" />
+
+We integrated [**Tomo Wallet**](https://tomo.lol/) for sleek wallet authentication and user session management. The wallet flow supports:
+
+- ✅ Multi-wallet support (MetaMask, Rainbow, WalletConnect)
+- ✅ Dark theme
+- ✅ Easy-to-use custom connect button
+
+**Code Snippets:**
+
+### 🔧 TomoProvider – `src/components/Providers/TomoProvider.tsx`
+
+```tsx
+const config = getDefaultConfig({
+  clientId: env_vars.tomo_client_id,
+  appName: "LiTED",
+  projectId: env_vars.wallet_connect_project_id,
+  chains: [storyAeneid],
+  ssr: true,
+  wallets: [
+    {
+      groupName: "Popular",
+      wallets: [metaMaskWallet, rainbowWallet, walletConnectWallet],
+    },
+  ],
+})
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
