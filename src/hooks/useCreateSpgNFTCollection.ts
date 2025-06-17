@@ -8,7 +8,7 @@ export const useCreateSpgNFTCollection = () => {
     const newCollection = await client.nftClient.createNFTCollection({
       name: "LiTED NFTs",
       symbol: "LiTED",
-      isPublicMinting: false,
+      isPublicMinting: true,
       mintOpen: true,
       mintFeeRecipient: zeroAddress,
       contractURI: "",
